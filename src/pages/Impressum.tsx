@@ -20,9 +20,9 @@ const impressumContent = {
     responsibleLabel: 'Ответственный за содержание согласно § 18 Abs. 2 MStV:',
   },
   en: {
-    title: 'Legal Information',
+    title: 'About & Contact',
     backToHome: 'Back to home',
-    impressum: 'Impressum',
+    impressum: 'About & Contact',
     accordingTo: 'Information according to § 5 TMG',
     nameLabel: 'First and Last Name:',
     name: 'Svetlana Chepilka',

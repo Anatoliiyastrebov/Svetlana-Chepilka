@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
               to="/impressum"
               className="hover:text-foreground transition-colors"
             >
-              Impressum
+              {language === 'ru' ? 'О нас и контакты' : 'About & Contact'}
             </Link>
           </div>
         </div>
