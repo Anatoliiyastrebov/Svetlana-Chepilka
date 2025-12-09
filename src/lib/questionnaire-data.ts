@@ -1258,7 +1258,7 @@ export const getQuestionnaire = (type: QuestionnaireType): QuestionnaireSection[
 
 export const getQuestionnaireTitle = (type: QuestionnaireType, lang: Language): string => {
   const titles = {
-    infant: { ru: 'Анкета для младенца', en: 'Infant' },
+    infant: { ru: 'Анкета для младенца', en: 'Baby' },
     child: { ru: 'Детская анкета', en: 'Child' },
     woman: { ru: 'Женская анкета', en: 'Women\'s' },
     man: { ru: 'Мужская анкета', en: 'Men\'s' },
