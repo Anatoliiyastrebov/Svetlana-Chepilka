@@ -293,6 +293,8 @@ const sleepAdultOptions: QuestionOption[] = [
   { value: 'good', label: { ru: 'Хороший', en: 'Good' } },
   { value: 'hard_to_fall_asleep', label: { ru: 'Трудно заснуть', en: 'Hard to fall asleep' } },
   { value: 'wake_often', label: { ru: 'Часто просыпаюсь', en: 'Wake up often' } },
+  { value: 'hear_every_sound', label: { ru: 'Слышу каждый звук', en: 'Hear every sound' } },
+  { value: 'sensitive_sleeper', label: { ru: 'Чутко сплю', en: 'Sensitive sleeper' } },
 ];
 
 const weightSatisfactionOptions: QuestionOption[] = [
