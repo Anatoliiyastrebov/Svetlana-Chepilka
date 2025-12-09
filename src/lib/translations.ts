@@ -205,7 +205,7 @@ export const translations = {
     selectCategory: 'Select questionnaire category',
     
     // Categories
-    infantTitle: 'For baby',
+    infantTitle: 'Baby',
     infantDescription: 'Under 1 year',
     childTitle: 'Child',
     childDescription: '1–12 years',
