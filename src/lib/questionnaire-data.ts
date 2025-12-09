@@ -122,7 +122,7 @@ const energyOptions: QuestionOption[] = [
 
 const birthOptions: QuestionOption[] = [
   { value: 'natural', label: { ru: 'Естественно', en: 'Natural' } },
-  { value: 'cesarean', label: { ru: 'Кесарево', en: 'Cesarean' } },
+  { value: 'cesarean', label: { ru: 'Кесарево', en: 'C-section' } },
 ];
 
 const injuriesOptions: QuestionOption[] = [

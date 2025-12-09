@@ -323,7 +323,7 @@ export const translations = {
     // Infant specific
     birthType: 'How was the birth',
     natural: 'Natural',
-    cesarean: 'Cesarean',
+    cesarean: 'C-section',
     other: 'Other',
     motherToxicosis: 'Did mother have severe toxicosis',
     motherAllergy: 'Did mother have allergies before/during pregnancy',
