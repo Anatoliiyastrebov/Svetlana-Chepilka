@@ -55,7 +55,7 @@ export const DSGVOCheckbox: React.FC<DSGVOCheckboxProps> = ({ checked, onChange 
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
             <ShieldCheck className="w-4 h-4 text-primary" />
-            <span className="font-medium text-foreground">{language === 'ru' ? 'DSGVO / GDPR' : 'Privacy Policy / CCPA'}</span>
+            <span className="font-medium text-foreground">{language === 'ru' ? 'Политика конфиденциальности / CCPA' : 'Privacy Policy / CCPA'}</span>
           </div>
           <p className="text-sm text-muted-foreground leading-relaxed">
             {t('dsgvoConsent')}
