@@ -121,6 +121,16 @@ export const deleteTelegramMessage = async (messageId: number): Promise<{ succes
     return { success: false, error: 'Telegram Bot Token or Chat ID not configured' };
   }
 
+  // Check if messageId is a real Telegram message_id (usually small numbers) or a timestamp fallback
+  // Telegram message_ids are typically small integers, timestamps are large numbers (milliseconds since epoch)
+  // If messageId is larger than a reasonable message_id (e.g., > 1 billion), it's likely a timestamp
+  if (messageId > 1000000000) {
+    return { 
+      success: false, 
+      error: 'Cannot delete: message ID not available. Please contact us directly to delete your data.' 
+    };
+  }
+
   try {
     const response = await fetch(
       `https://api.telegram.org/bot${BOT_TOKEN}/deleteMessage`,
