@@ -201,10 +201,10 @@ const memoryOptions: QuestionOption[] = [
 ];
 
 const illnessAntibioticsOptions: QuestionOption[] = [
-  { value: 'rarely_ill', label: { ru: 'Редко болеет', en: 'Rarely ill' } },
-  { value: 'often_ill', label: { ru: 'Часто болеет', en: 'Often ill' } },
-  { value: 'took_antibiotics', label: { ru: 'Принимал антибиотики', en: 'Took antibiotics' } },
-  { value: 'both', label: { ru: 'И часто болеет, и принимал антибиотики', en: 'Both often ill and took antibiotics' } },
+  { value: 'sometimes_sick', label: { ru: 'Иногда болеет', en: 'Sometimes sick' } },
+  { value: 'often_sick', label: { ru: 'Часто болеет', en: 'Often sick' } },
+  { value: 'take_antibiotics', label: { ru: 'Принимал антибиотики', en: 'Take antibiotics' } },
+  { value: 'both', label: { ru: 'И часто болеет, и принимал антибиотики', en: 'Both often sick and take antibiotics' } },
 ];
 
 const cystsStonesOptions: QuestionOption[] = [
@@ -403,7 +403,7 @@ export const infantQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'illness_antibiotics',
         type: 'checkbox',
-        label: { ru: 'Часто ли болеет / принимал ли антибиотики', en: 'Is often ill / has taken antibiotics' },
+        label: { ru: 'Часто ли болеет / принимал ли антибиотики', en: 'Is often sick / has taken antibiotics' },
         icon: 'pill',
         options: illnessAntibioticsOptions,
         required: true,
@@ -649,7 +649,7 @@ export const childQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'illness_antibiotics',
         type: 'checkbox',
-        label: { ru: 'Часто ли болеет, принимал ли антибиотики', en: 'Is often ill, has taken antibiotics' },
+        label: { ru: 'Часто ли болеет, принимал ли антибиотики', en: 'Is often sick, has taken antibiotics' },
         icon: 'pill',
         options: illnessAntibioticsOptions,
         required: true,
