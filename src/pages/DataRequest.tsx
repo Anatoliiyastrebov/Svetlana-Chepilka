@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Home, Trash2, FileText, Loader2 } from 'lucide-react';
@@ -19,6 +19,11 @@ const DataRequest: React.FC = () => {
   const [submittedData, setSubmittedData] = useState<SubmittedData[]>(getSubmittedDataList());
   const [isDeleting, setIsDeleting] = useState<number | null>(null);
   const [requestType, setRequestType] = useState<'access' | 'delete' | null>(null);
+
+  // Refresh submitted data list on mount
+  useEffect(() => {
+    setSubmittedData(getSubmittedDataList());
+  }, []);
   const [requestForm, setRequestForm] = useState({
     name: '',
     email: '',
