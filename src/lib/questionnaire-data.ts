@@ -272,6 +272,14 @@ const pressureOptions: QuestionOption[] = [
   { value: 'normal', label: { ru: 'Нормальное', en: 'Normal' } },
 ];
 
+const diabetesOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Нет проблем', en: 'No issues' } },
+  { value: 'pre_diabetes', label: { ru: 'Пред диабет', en: 'Pre-diabetes' } },
+  { value: 'diabetes_stage', label: { ru: 'Диабет какой стадии', en: 'Diabetes, what stage' } },
+  { value: 'on_pills', label: { ru: 'На таблетках', en: 'On pills' } },
+  { value: 'on_insulin', label: { ru: 'На инсулине', en: 'On insulin' } },
+];
+
 const waterOptions: QuestionOption[] = [
   { value: '1', label: { ru: '1 литр', en: '1 liter' } },
   { value: '1.5', label: { ru: '1.5 литра', en: '1.5 liters' } },
@@ -854,6 +862,15 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
         hasAdditional: true,
       },
       {
+        id: 'diabetes',
+        type: 'checkbox',
+        label: { ru: 'Диабет', en: 'Diabetes' },
+        icon: 'activity',
+        options: diabetesOptions,
+        required: true,
+        hasAdditional: true,
+      },
+      {
         id: 'menstruation',
         type: 'checkbox',
         label: { ru: 'Месячные или менопауза', en: 'Menstruation or menopause' },
@@ -1149,6 +1166,15 @@ export const manQuestionnaire: QuestionnaireSection[] = [
         label: { ru: 'Давление. Пьете ли таблетки (написать в дополнительно)', en: 'Blood pressure. Do you take medication (write in additional)' },
         icon: 'activity',
         options: pressureOptions,
+        required: true,
+        hasAdditional: true,
+      },
+      {
+        id: 'diabetes',
+        type: 'checkbox',
+        label: { ru: 'Диабет', en: 'Diabetes' },
+        icon: 'activity',
+        options: diabetesOptions,
         required: true,
         hasAdditional: true,
       },
