@@ -23,14 +23,14 @@ const impressumContent = {
     title: 'About & Contact',
     backToHome: 'Back to home',
     impressum: 'About & Contact',
-    accordingTo: 'Information according to § 5 TMG',
+    accordingTo: 'Contact Information',
     nameLabel: 'First and Last Name:',
     name: 'Svetlana Chepilka',
     addressLabel: 'Address:',
     address: '4763 69th Street\nSacramento, CA\n95820',
     emailLabel: 'E-Mail:',
     email: 'schepilka@gmail.com',
-    responsibleLabel: 'Responsible for content according to § 18 Abs. 2 MStV:',
+    responsibleLabel: 'Content Owner:',
   },
 };
 
