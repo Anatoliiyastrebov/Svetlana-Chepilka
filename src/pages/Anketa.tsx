@@ -208,17 +208,23 @@ const Anketa: React.FC = () => {
       
       if (result.success) {
         // Save submitted data with message_id for CCPA compliance
-        if (result.messageId) {
-          const name = `${formData.name || ''} ${formData.last_name || ''}`.trim() || 'Anonymous';
-          const contactInfo = contactData.telegram || contactData.instagram || contactData.phone || 'No contact';
-          saveSubmittedData({
-            messageId: result.messageId,
-            timestamp: Date.now(),
-            name,
-            contactInfo,
-            type,
-          });
-        }
+        const name = `${formData.name || ''} ${formData.last_name || ''}`.trim() || 'Anonymous';
+        const contactInfo = contactData.telegram || contactData.instagram || contactData.phone || 'No contact';
+        
+        // Save data even if messageId is not available (for tracking purposes)
+        // Use timestamp as fallback identifier if messageId is missing
+        const identifier = result.messageId || Date.now();
+        
+        saveSubmittedData({
+          messageId: identifier,
+          timestamp: Date.now(),
+          name,
+          contactInfo,
+          type,
+        });
+        
+        console.log('Saved submitted data:', { messageId: identifier, name, contactInfo, type });
+        
         clearFormData(type, language);
         navigate(`/success?lang=${language}`);
       } else {

@@ -505,10 +505,14 @@ Current status:
       };
     }
 
-    console.log('Successfully sent to Telegram', { messageId: responseData.result?.message_id });
+    const messageId = responseData.result?.message_id;
+    console.log('Successfully sent to Telegram', { 
+      messageId,
+      fullResponse: responseData 
+    });
     return { 
       success: true, 
-      messageId: responseData.result?.message_id 
+      messageId: messageId 
     };
   } catch (error: any) {
     if (timeoutId) clearTimeout(timeoutId);
