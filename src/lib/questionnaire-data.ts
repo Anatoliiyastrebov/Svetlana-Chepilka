@@ -117,7 +117,7 @@ const energyOptions: QuestionOption[] = [
   { value: 'reduced', label: { ru: 'Сниженная', en: 'Reduced' } },
   { value: 'very_low', label: { ru: 'Очень низкая', en: 'Very low' } },
   { value: 'tired_morning', label: { ru: 'С утра уже присутствует усталость', en: 'Tired in the morning already' } },
-  { value: 'no_energy_lunch', label: { ru: 'К обеду нет энергии', en: 'No energy by lunch' } },
+  { value: 'no_energy_lunch', label: { ru: 'К обеду нет энергии', en: 'No energy by noon' } },
 ];
 
 const birthOptions: QuestionOption[] = [
