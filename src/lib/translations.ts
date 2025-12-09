@@ -207,11 +207,11 @@ export const translations = {
     // Categories
     infantTitle: 'For baby',
     infantDescription: 'Under 1 year',
-    childTitle: 'Child Questionnaire',
+    childTitle: 'Child',
     childDescription: '1–12 years',
-    womanTitle: 'Women\'s Questionnaire',
+    womanTitle: 'Women\'s',
     womanDescription: 'For adult women',
-    manTitle: 'Men\'s Questionnaire',
+    manTitle: 'Men\'s',
     manDescription: 'For adult men',
     
     // Form labels
@@ -380,10 +380,10 @@ export const translations = {
     submitError: 'Error submitting. Please try again later.',
     
     // Markdown headers
-    mdInfant: '👶 Infant Questionnaire',
-    mdChild: '🧒 Child Questionnaire',
-    mdWoman: '🌸 Women\'s Questionnaire',
-    mdMan: '👨 Men\'s Questionnaire',
+    mdInfant: '👶 Infant',
+    mdChild: '🧒 Child',
+    mdWoman: '🌸 Women\'s',
+    mdMan: '👨 Men\'s',
     mdContacts: '📞 Contacts',
   }
 };
