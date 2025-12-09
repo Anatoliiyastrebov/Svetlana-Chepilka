@@ -67,39 +67,39 @@ export const PrivacyPolicyDialog: React.FC<PrivacyPolicyDialogProps> = ({
       sections: [
         {
           title: 'Data Controller',
-          content: 'The data controller is the person providing health consultation. For requests regarding data processing, please contact us through the contact details provided in the questionnaire.',
+          content: 'The data controller is Svetlana Chepilka, located at 4763 69th Street, Sacramento, CA 95820. For requests regarding data processing, please contact us through the contact details provided in the questionnaire or via email at schepilka@gmail.com.',
         },
         {
           title: 'Legal Basis for Processing',
-          content: 'The processing of personal data is based on your voluntary consent (Art. 6 para. 1 lit. a GDPR). You can withdraw your consent at any time.',
+          content: 'The processing of personal data is based on your voluntary consent. This service operates in accordance with the California Consumer Privacy Act (CCPA) and applicable U.S. privacy laws. You can withdraw your consent at any time.',
         },
         {
           title: 'What data we collect',
-          content: 'We collect personal data that you provide in the questionnaire: name, age, weight, health information, symptoms, complaints, allergies, medical history, and contact details (Telegram or Instagram). Providing data is voluntary but necessary for providing consultation.',
+          content: 'We collect personal data that you provide in the questionnaire: name, age, weight, health information, symptoms, complaints, allergies, medical history, and contact details (Telegram or Instagram). Providing data is voluntary but necessary for providing consultation. We do not sell your personal information.',
         },
         {
           title: 'Why we collect data',
-          content: 'Data is collected solely for the purpose of providing health consultation. We use this information to analyze your condition and prepare recommendations. Data is not used for automated decision-making or profiling.',
+          content: 'Data is collected solely for the purpose of providing health consultation. We use this information to analyze your condition and prepare recommendations. Data is not used for automated decision-making, profiling, or commercial purposes. We do not share your data with third parties for marketing purposes.',
         },
         {
           title: 'Where data is sent',
-          content: 'Data is sent to a Telegram bot through the official Telegram API. The message with your questionnaire is sent to a secure chat for processing by a consultant. Telegram processes data in accordance with applicable data protection laws.',
+          content: 'Data is sent to a Telegram bot through the official Telegram API. The message with your questionnaire is sent to a secure chat for processing by a consultant. Telegram processes data in accordance with its privacy policy and applicable data protection laws.',
         },
         {
           title: 'How long data is stored',
-          content: 'Data is stored in the Telegram chat until the consultation is completed or until you withdraw your consent. After completion of the consultation or withdrawal of consent, you can request deletion of your data. We will delete your data within 30 days of the request.',
+          content: 'Data is stored in the Telegram chat until the consultation is completed or until you withdraw your consent. After completion of the consultation or withdrawal of consent, you can request deletion of your data. We will delete your data within 45 days of the request, as required by CCPA.',
         },
         {
-          title: 'Your rights',
-          content: 'In accordance with GDPR, you have the right to: access your data (Art. 15 GDPR), correct it (Art. 16 GDPR), delete it (Art. 17 GDPR), restrict processing (Art. 18 GDPR), data portability (Art. 20 GDPR), and object to processing (Art. 21 GDPR). You can withdraw your consent to data processing at any time without affecting the lawfulness of processing based on consent before its withdrawal.',
-        },
-        {
-          title: 'Right to lodge a complaint',
-          content: 'You have the right to lodge a complaint with a data protection supervisory authority if you believe that the processing of your personal data violates GDPR. In Germany, this is the Federal Commissioner for Data Protection and Freedom of Information (BfDI).',
+          title: 'Your rights under CCPA',
+          content: 'In accordance with the California Consumer Privacy Act (CCPA) and applicable U.S. privacy laws, you have the right to: (1) Know what personal information is collected, used, shared, or sold; (2) Delete personal information held by us; (3) Opt-out of the sale of personal information (we do not sell your information); (4) Non-discrimination for exercising your privacy rights. You can withdraw your consent to data processing at any time.',
         },
         {
           title: 'How to exercise your rights',
-          content: 'To exercise your rights (access, correction, deletion, etc.), contact us via Telegram or Instagram, providing your name and the date you filled out the questionnaire. We will process your request within 30 days of receipt.',
+          content: 'To exercise your rights (access, correction, deletion, etc.), contact us via Telegram, Instagram, or email at schepilka@gmail.com, providing your name and the date you filled out the questionnaire. We will process your request within 45 days of receipt, as required by CCPA. You may also designate an authorized agent to make a request on your behalf.',
+        },
+        {
+          title: 'Children\'s Privacy',
+          content: 'This service is not directed to children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us to have that information deleted.',
         },
       ],
     },

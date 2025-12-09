@@ -196,7 +196,7 @@ const Anketa: React.FC = () => {
     }
 
     if (!dsgvoAccepted) {
-      toast.error(language === 'ru' ? 'Необходимо принять условия DSGVO' : 'You must accept GDPR terms');
+      toast.error(language === 'ru' ? 'Необходимо принять условия DSGVO' : 'You must accept Privacy Policy terms');
       return;
     }
 

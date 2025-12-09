@@ -358,7 +358,7 @@ export const translations = {
     contactLink: 'Your contact link',
     
     // DSGVO
-    dsgvoConsent: 'I give my voluntary consent to the processing of my personal data in accordance with GDPR for the purpose of providing health consultation. I understand that the consultation is not a medical service. I know that I can withdraw my consent at any time.',
+    dsgvoConsent: 'I give my voluntary consent to the processing of my personal data in accordance with the California Consumer Privacy Act (CCPA) and applicable U.S. privacy laws for the purpose of providing health consultation. I understand that the consultation is not a medical service. I know that I can withdraw my consent at any time and exercise my privacy rights under CCPA.',
     
     // Buttons
     submit: 'Submit questionnaire',

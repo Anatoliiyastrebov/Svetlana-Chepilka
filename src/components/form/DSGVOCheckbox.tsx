@@ -19,7 +19,7 @@ export const DSGVOCheckbox: React.FC<DSGVOCheckboxProps> = ({ checked, onChange 
 
   const userRightsNotice = {
     ru: 'Вы имеете право на доступ, исправление, удаление и ограничение обработки ваших данных в соответствии с GDPR.',
-    en: 'You have the right to access, correct, delete, and restrict processing of your data in accordance with GDPR.',
+    en: 'You have the right to know, access, delete, and opt-out of the sale of your personal information in accordance with CCPA and applicable U.S. privacy laws.',
   };
 
   return (
@@ -55,7 +55,7 @@ export const DSGVOCheckbox: React.FC<DSGVOCheckboxProps> = ({ checked, onChange 
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
             <ShieldCheck className="w-4 h-4 text-primary" />
-            <span className="font-medium text-foreground">DSGVO / GDPR</span>
+            <span className="font-medium text-foreground">{language === 'ru' ? 'DSGVO / GDPR' : 'Privacy Policy / CCPA'}</span>
           </div>
           <p className="text-sm text-muted-foreground leading-relaxed">
             {t('dsgvoConsent')}
