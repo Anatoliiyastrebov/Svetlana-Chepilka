@@ -1235,7 +1235,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'energy',
         type: 'radio',
-        label: { ru: 'Энергия — с утра устал', en: 'Energy — tired in the morning' },
+        label: { ru: 'Энергия', en: 'Energy' },
         icon: 'zap',
         options: energyOptions,
         required: true,
