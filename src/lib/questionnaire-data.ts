@@ -275,7 +275,7 @@ const pressureOptions: QuestionOption[] = [
 const diabetesOptions: QuestionOption[] = [
   { value: 'no_issues', label: { ru: 'Нет проблем', en: 'No issues' } },
   { value: 'pre_diabetes', label: { ru: 'Пред диабет', en: 'Pre-diabetes' } },
-  { value: 'diabetes_stage', label: { ru: 'Диабет какой стадии', en: 'Diabetes, what stage' } },
+  { value: 'diabetes_stage', label: { ru: 'Да', en: 'Yes' } },
   { value: 'on_pills', label: { ru: 'На таблетках', en: 'On pills' } },
   { value: 'on_insulin', label: { ru: 'На инсулине', en: 'On insulin' } },
 ];

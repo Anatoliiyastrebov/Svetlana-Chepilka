@@ -166,6 +166,19 @@ export const validateForm = (
     }
   }
 
+  // Special validation: if diabetes has "diabetes_stage" selected, additional field is required
+  if (formData['diabetes'] && additionalData) {
+    const diabetesValue = formData['diabetes'];
+    const diabetesArray = Array.isArray(diabetesValue) ? diabetesValue : [diabetesValue];
+    const hasDiabetesStage = diabetesArray.includes('diabetes_stage');
+    if (hasDiabetesStage) {
+      const diabetesAdditional = additionalData['diabetes_additional'];
+      if (!diabetesAdditional || diabetesAdditional.trim() === '') {
+        errors['diabetes_additional'] = t.required;
+      }
+    }
+  }
+
   // Validate contact - at least one method must be filled
   const hasTelegram = contactData.telegram && contactData.telegram.trim() !== '';
   const hasInstagram = contactData.instagram && contactData.instagram.trim() !== '';
