@@ -12,7 +12,7 @@ const impressumContent = {
     impressum: 'Правовая информация',
     accordingTo: 'Информация согласно § 5 TMG',
     nameLabel: 'Имя и фамилия:',
-    name: 'Svetlana Chepilka',
+    name: 'Светлана Чепилка',
     addressLabel: 'Адрес:',
     address: '4763 69-я улица\nСакраменто, Калифорния\n95820',
     emailLabel: 'Электронная почта:',
