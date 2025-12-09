@@ -19,7 +19,7 @@ export const DSGVOCheckbox: React.FC<DSGVOCheckboxProps> = ({ checked, onChange 
 
   const userRightsNotice = {
     ru: 'Вы имеете право знать, получать доступ и удалять вашу персональную информацию в соответствии с CCPA и применимыми законами США о конфиденциальности.',
-    en: 'You have the right to know, access, delete, and opt-out of the sale of your personal information in accordance with CCPA and applicable U.S. privacy laws.',
+    en: 'You have the right to know, access, and delete your personal information in accordance with CCPA and applicable U.S. privacy laws.',
   };
 
   return (
