@@ -157,12 +157,25 @@ export const QuestionField: React.FC<QuestionFieldProps> = ({
         </p>
       )}
 
-      {question.hasAdditional && 
-       (question.id !== 'how_learned' || value === 'recommendation') && (
+      {question.hasAdditional && (() => {
+        // Special handling for how_learned - show only if recommendation is selected
+        if (question.id === 'how_learned') {
+          return value === 'recommendation';
+        }
+        // Special handling for diabetes - show only if diabetes_stage is selected
+        if (question.id === 'diabetes') {
+          const currentValues = Array.isArray(value) ? value : [];
+          return currentValues.includes('diabetes_stage');
+        }
+        // For all other questions with hasAdditional, always show
+        return true;
+      })() && (
         <div className="mt-2">
           <label className="text-sm text-muted-foreground mb-1 block">
             {question.id === 'how_learned' && value === 'recommendation'
               ? (language === 'ru' ? 'Укажите имя и фамилию' : 'Specify first and last name')
+              : question.id === 'diabetes'
+              ? (language === 'ru' ? 'Укажите стадию' : 'Specify stage')
               : t('additionalInfo')}
             {additionalError && <span className="text-destructive ml-1">*</span>}
           </label>
@@ -173,6 +186,8 @@ export const QuestionField: React.FC<QuestionFieldProps> = ({
             placeholder={
               question.id === 'how_learned' && value === 'recommendation'
                 ? (language === 'ru' ? 'Имя и фамилия' : 'First and last name')
+                : question.id === 'diabetes'
+                ? (language === 'ru' ? 'Укажите стадию' : 'Specify stage')
                 : t('additionalInfo')
             }
           />
