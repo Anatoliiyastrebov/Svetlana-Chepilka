@@ -219,7 +219,7 @@ export const translations = {
     lastName: 'Last Name',
     age: 'Age',
     ageMonths: 'Age (in months)',
-    weight: 'Weight (kg)',
+    weight: 'Weight (lb)',
     waterPerDay: 'Water per day (liters)',
     additionalInfo: 'Additional info (optional)',
     whatElseToKnow: 'What else should we know about health',

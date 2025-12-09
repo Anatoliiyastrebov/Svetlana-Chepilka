@@ -317,7 +317,7 @@ export const infantQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'weight',
         type: 'number',
-        label: { ru: 'Вес (кг)', en: 'Weight (kg)' },
+        label: { ru: 'Вес (кг)', en: 'Weight (lb)' },
         icon: 'scale',
         required: true,
         hasAdditional: false,
@@ -531,7 +531,7 @@ export const childQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'weight',
         type: 'number',
-        label: { ru: 'Вес (кг)', en: 'Weight (kg)' },
+        label: { ru: 'Вес (кг)', en: 'Weight (lb)' },
         icon: 'scale',
         required: true,
         hasAdditional: false,
@@ -715,7 +715,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'weight',
         type: 'number',
-        label: { ru: 'Вес (кг)', en: 'Weight (kg)' },
+        label: { ru: 'Вес (кг)', en: 'Weight (lb)' },
         icon: 'scale',
         required: true,
         hasAdditional: false,
@@ -1000,7 +1000,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'weight',
         type: 'number',
-        label: { ru: 'Вес (кг)', en: 'Weight (kg)' },
+        label: { ru: 'Вес (кг)', en: 'Weight (lb)' },
         icon: 'scale',
         required: true,
         hasAdditional: false,
