@@ -957,6 +957,15 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
         placeholder: { ru: 'Опишите, если делали', en: 'Describe if you did' },
       },
       {
+        id: 'blood_tests',
+        type: 'radio',
+        label: { ru: 'Есть анализы крови за последние 3 месяца?', en: 'Do you have blood test results from the last 3 months?' },
+        icon: 'heart',
+        options: yesNoOptionsSimple,
+        required: true,
+        hasAdditional: true,
+      },
+      {
         id: 'main_problem',
         type: 'textarea',
         label: { ru: 'Ваша основная проблема, которую хотелось бы решить больше всего?', en: 'Your main problem that you would most like to solve?' },
@@ -1249,6 +1258,15 @@ export const manQuestionnaire: QuestionnaireSection[] = [
         required: false,
         hasAdditional: false,
         placeholder: { ru: 'Опишите, если делали', en: 'Describe if you did' },
+      },
+      {
+        id: 'blood_tests',
+        type: 'radio',
+        label: { ru: 'Есть анализы крови за последние 3 месяца?', en: 'Do you have blood test results from the last 3 months?' },
+        icon: 'heart',
+        options: yesNoOptionsSimple,
+        required: true,
+        hasAdditional: true,
       },
       {
         id: 'main_problem',
