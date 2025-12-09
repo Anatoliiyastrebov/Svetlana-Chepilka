@@ -66,40 +66,44 @@ export const PrivacyPolicyDialog: React.FC<PrivacyPolicyDialogProps> = ({
       title: 'Privacy Policy',
       sections: [
         {
-          title: 'Data Controller',
-          content: 'The data controller is Svetlana Chepilka, located at 4763 69th Street, Sacramento, CA 95820. For requests regarding data processing, please contact us through the contact details provided in the questionnaire or via email at schepilka@gmail.com.',
+          title: 'Information We Collect',
+          content: 'We collect the following categories of personal information that you voluntarily provide in the questionnaire: (1) Identifiers: name, email address, Telegram username, Instagram username, phone number; (2) Health information: age, weight, symptoms, complaints, allergies, medical history, health conditions; (3) Other information: any additional information you choose to provide in the questionnaire. We do not collect information automatically through cookies or tracking technologies.',
         },
         {
-          title: 'Legal Basis for Processing',
-          content: 'The processing of personal data is based on your voluntary consent. This service operates in accordance with the California Consumer Privacy Act (CCPA) and applicable U.S. privacy laws. You can withdraw your consent at any time.',
+          title: 'How We Use Your Information',
+          content: 'We use the personal information you provide solely for the purpose of providing health consultation services. Specifically, we use this information to: analyze your health condition, prepare personalized recommendations, communicate with you about your consultation, and improve our consultation services. We do not use your information for automated decision-making, profiling, advertising, or commercial purposes. We do not sell, rent, or share your personal information with third parties for marketing purposes.',
         },
         {
-          title: 'What data we collect',
-          content: 'We collect personal data that you provide in the questionnaire: name, age, weight, health information, symptoms, complaints, allergies, medical history, and contact details (Telegram or Instagram). Providing data is voluntary but necessary for providing consultation. We do not sell your personal information.',
+          title: 'How We Share Your Information',
+          content: 'Your questionnaire data is sent to a Telegram bot through the official Telegram API for processing by a health consultant. Telegram processes data in accordance with its privacy policy. We do not share, sell, or disclose your personal information to third parties except as necessary to provide the consultation service. We do not share your information with advertisers, data brokers, or other third parties for commercial purposes.',
         },
         {
-          title: 'Why we collect data',
-          content: 'Data is collected solely for the purpose of providing health consultation. We use this information to analyze your condition and prepare recommendations. Data is not used for automated decision-making, profiling, or commercial purposes. We do not share your data with third parties for marketing purposes.',
+          title: 'Data Security',
+          content: 'We implement reasonable security measures to protect your personal information. Data is transmitted securely through Telegram\'s encrypted API. However, no method of transmission over the Internet is 100% secure. While we strive to protect your personal information, we cannot guarantee absolute security.',
         },
         {
-          title: 'Where data is sent',
-          content: 'Data is sent to a Telegram bot through the official Telegram API. The message with your questionnaire is sent to a secure chat for processing by a consultant. Telegram processes data in accordance with its privacy policy and applicable data protection laws.',
+          title: 'Data Retention',
+          content: 'We retain your personal information in the Telegram chat for as long as necessary to provide the consultation service or until you request deletion. You may request deletion of your data at any time. We will delete your data within 45 days of receiving your request, as required by CCPA. After deletion, we may retain certain information as required by law or for legitimate business purposes.',
         },
         {
-          title: 'How long data is stored',
-          content: 'Data is stored in the Telegram chat until the consultation is completed or until you withdraw your consent. After completion of the consultation or withdrawal of consent, you can request deletion of your data. We will delete your data within 45 days of the request, as required by CCPA.',
+          title: 'Your Rights Under CCPA',
+          content: 'As a California resident, you have the following rights under the California Consumer Privacy Act (CCPA): (1) Right to Know - You have the right to request information about what personal information we collect, use, disclose, or sell; (2) Right to Delete - You have the right to request deletion of your personal information; (3) Right to Opt-Out - You have the right to opt-out of the sale of personal information (we do not sell your information); (4) Right to Non-Discrimination - We will not discriminate against you for exercising your privacy rights. These rights apply to all U.S. residents, not just California residents.',
         },
         {
-          title: 'Your rights under CCPA',
-          content: 'In accordance with the California Consumer Privacy Act (CCPA) and applicable U.S. privacy laws, you have the right to: (1) Know what personal information is collected, used, shared, or sold; (2) Delete personal information held by us; (3) Opt-out of the sale of personal information (we do not sell your information); (4) Non-discrimination for exercising your privacy rights. You can withdraw your consent to data processing at any time.',
+          title: 'How to Exercise Your Rights',
+          content: 'To exercise your rights, contact us via email at schepilka@gmail.com, Telegram, or Instagram. Please provide: (1) Your name; (2) The date you filled out the questionnaire; (3) A clear description of your request. We will verify your identity before processing your request. We will respond to your request within 45 days, as required by CCPA. You may designate an authorized agent to make a request on your behalf by providing written authorization.',
         },
         {
-          title: 'How to exercise your rights',
-          content: 'To exercise your rights (access, correction, deletion, etc.), contact us via Telegram, Instagram, or email at schepilka@gmail.com, providing your name and the date you filled out the questionnaire. We will process your request within 45 days of receipt, as required by CCPA. You may also designate an authorized agent to make a request on your behalf.',
+          title: 'Children\'s Privacy (COPPA)',
+          content: 'This service is not directed to children under 13 years of age. We do not knowingly collect personal information from children under 13 without verifiable parental consent. If you are a parent or guardian and believe your child under 13 has provided us with personal information, please contact us immediately at schepilka@gmail.com to have that information deleted. We comply with the Children\'s Online Privacy Protection Act (COPPA).',
         },
         {
-          title: 'Children\'s Privacy',
-          content: 'This service is not directed to children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us to have that information deleted.',
+          title: 'Changes to This Privacy Policy',
+          content: 'We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. Your continued use of the service after such changes constitutes your acceptance of the updated Privacy Policy.',
+        },
+        {
+          title: 'Contact Information',
+          content: 'If you have questions about this Privacy Policy or wish to exercise your rights, please contact: Svetlana Chepilka, 4763 69th Street, Sacramento, CA 95820, Email: schepilka@gmail.com. For privacy-related requests, please include "Privacy Request" in the subject line.',
         },
       ],
     },
