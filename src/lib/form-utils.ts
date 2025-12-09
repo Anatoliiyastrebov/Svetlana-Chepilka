@@ -19,9 +19,19 @@ export interface FormErrors {
   [key: string]: string;
 }
 
+export interface SubmittedData {
+  messageId: number;
+  timestamp: number;
+  name: string;
+  contactInfo: string;
+  type: QuestionnaireType;
+}
+
 // Storage keys
 const getStorageKey = (type: QuestionnaireType, lang: Language) => 
   `health_questionnaire_${type}_${lang}`;
+
+const getSubmittedDataKey = () => 'health_questionnaire_submitted';
 
 // Save form data to localStorage
 export const saveFormData = (
@@ -66,6 +76,79 @@ export const clearFormData = (type: QuestionnaireType, lang: Language) => {
     localStorage.removeItem(getStorageKey(type, lang));
   } catch (err) {
     console.error('Error clearing form data:', err);
+  }
+};
+
+// Save submitted data with message_id for deletion requests
+export const saveSubmittedData = (data: SubmittedData) => {
+  try {
+    const existing = getSubmittedDataList();
+    existing.push(data);
+    localStorage.setItem(getSubmittedDataKey(), JSON.stringify(existing));
+  } catch (err) {
+    console.error('Error saving submitted data:', err);
+  }
+};
+
+// Get list of submitted data
+export const getSubmittedDataList = (): SubmittedData[] => {
+  try {
+    const stored = localStorage.getItem(getSubmittedDataKey());
+    return stored ? JSON.parse(stored) : [];
+  } catch (err) {
+    console.error('Error loading submitted data:', err);
+    return [];
+  }
+};
+
+// Delete submitted data by message_id
+export const deleteSubmittedData = (messageId: number) => {
+  try {
+    const existing = getSubmittedDataList();
+    const filtered = existing.filter(item => item.messageId !== messageId);
+    localStorage.setItem(getSubmittedDataKey(), JSON.stringify(filtered));
+  } catch (err) {
+    console.error('Error deleting submitted data:', err);
+  }
+};
+
+// Delete message from Telegram
+export const deleteTelegramMessage = async (messageId: number): Promise<{ success: boolean; error?: string }> => {
+  const BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+  const CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+
+  if (!BOT_TOKEN || !CHAT_ID) {
+    return { success: false, error: 'Telegram Bot Token or Chat ID not configured' };
+  }
+
+  try {
+    const response = await fetch(
+      `https://api.telegram.org/bot${BOT_TOKEN}/deleteMessage`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          message_id: messageId,
+        }),
+      }
+    );
+
+    const responseData = await response.json();
+
+    if (!response.ok || !responseData.ok) {
+      const errorMsg = responseData.description || 'Failed to delete message';
+      return { success: false, error: errorMsg };
+    }
+
+    return { success: true };
+  } catch (error: any) {
+    return { 
+      success: false, 
+      error: error.message || 'Unknown error occurred' 
+    };
   }
 };
 
@@ -320,7 +403,7 @@ export const generateMarkdown = (
 // SECURITY NOTE: In production, use environment variables or a server-side proxy
 // Do not expose BOT_TOKEN in client-side code in production!
 // For development: Set VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID in .env file
-export const sendToTelegram = async (markdown: string): Promise<{ success: boolean; error?: string }> => {
+export const sendToTelegram = async (markdown: string): Promise<{ success: boolean; error?: string; messageId?: number }> => {
   // Try to get from environment variables first (for Vite: VITE_ prefix)
   const BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
   const CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
@@ -422,8 +505,11 @@ Current status:
       };
     }
 
-    console.log('Successfully sent to Telegram');
-    return { success: true };
+    console.log('Successfully sent to Telegram', { messageId: responseData.result?.message_id });
+    return { 
+      success: true, 
+      messageId: responseData.result?.message_id 
+    };
   } catch (error: any) {
     if (timeoutId) clearTimeout(timeoutId);
     

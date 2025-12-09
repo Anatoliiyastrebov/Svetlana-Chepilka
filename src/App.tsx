@@ -8,6 +8,7 @@ import Anketa from "./pages/Anketa";
 import Success from "./pages/Success";
 import NotFound from "./pages/NotFound";
 import Impressum from "./pages/Impressum";
+import DataRequest from "./pages/DataRequest";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
             <Route path="/anketa" element={<Anketa />} />
             <Route path="/success" element={<Success />} />
             <Route path="/impressum" element={<Impressum />} />
+            <Route path="/data-request" element={<DataRequest />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </LanguageProvider>
