@@ -91,7 +91,7 @@ export const PrivacyPolicyDialog: React.FC<PrivacyPolicyDialogProps> = ({
         },
         {
           title: 'How to Exercise Your Rights',
-          content: 'To exercise your rights, you can: (1) Visit our Data Request page at /data-request to submit a request online; (2) Contact us via email at schepilka@gmail.com, Telegram, or Instagram. Please provide: (1) Your name; (2) The date you filled out the questionnaire; (3) A clear description of your request. We will verify your identity before processing your request. We will respond to your request within 45 days, as required by CCPA. You may designate an authorized agent to make a request on your behalf by providing written authorization.',
+          content: 'To exercise your rights, you can: (1) Visit our Data Request page at /data-request to view and delete your submitted questionnaires directly; (2) Contact us via email at schepilka@gmail.com, Telegram, or Instagram if you need additional assistance. We will verify your identity before processing your request. We will respond to your request within 45 days, as required by CCPA. You may designate an authorized agent to make a request on your behalf by providing written authorization.',
         },
         {
           title: 'Children\'s Privacy (COPPA)',
