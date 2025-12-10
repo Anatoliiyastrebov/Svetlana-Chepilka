@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { Home, Trash2, FileText, Loader2 } from 'lucide-react';
+import { Home, Trash2, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { 
   getSubmittedDataList, 
   deleteSubmittedData, 
   deleteTelegramMessage,
-  sendToTelegram,
   SubmittedData 
 } from '@/lib/form-utils';
 import { toast } from 'sonner';
@@ -81,55 +80,30 @@ const DataRequest: React.FC = () => {
   const t = content[language];
 
   const handleDelete = async (messageId: number) => {
+    if (!window.confirm(content[language].deleteWarning)) {
+      return;
+    }
+
     setIsDeleting(messageId);
     try {
       const result = await deleteTelegramMessage(messageId);
       if (result.success) {
         deleteSubmittedData(messageId);
         setSubmittedData(getSubmittedDataList());
-        toast.success(t.deleteSuccess);
+        toast.success(content[language].deleteSuccess);
       } else {
-        toast.error(result.error || t.deleteError);
+        // Even if Telegram deletion fails, remove from local list
+        deleteSubmittedData(messageId);
+        setSubmittedData(getSubmittedDataList());
+        toast.warning(result.error || content[language].deleteError + '. Data removed from local list.');
       }
     } catch (error: any) {
-      toast.error(error.message || t.deleteError);
+      // Even if error occurs, remove from local list
+      deleteSubmittedData(messageId);
+      setSubmittedData(getSubmittedDataList());
+      toast.error(error.message || content[language].deleteError);
     } finally {
       setIsDeleting(null);
-    }
-  };
-
-  const handleRequestSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!requestForm.name || !requestForm.email || !requestForm.date) {
-      toast.error(t.fillAllFields);
-      return;
-    }
-
-    // Send request to Telegram
-    const requestText = `
-📋 ${requestType === 'access' ? t.accessTitle : t.deleteTitle}
-
-👤 Name: ${requestForm.name}
-📧 Email: ${requestForm.email}
-📅 Date: ${requestForm.date}
-${requestForm.requestDetails ? `\n📝 Details: ${requestForm.requestDetails}` : ''}
-
-⏰ Request submitted: ${new Date().toLocaleString()}
-    `.trim();
-
-    try {
-      const result = await sendToTelegram(requestText);
-      
-      if (result.success) {
-        toast.success(t.requestSent);
-        setRequestForm({ name: '', email: '', date: '', requestDetails: '' });
-        setRequestType(null);
-      } else {
-        toast.error(result.error || 'Error sending request');
-      }
-    } catch (error: any) {
-      toast.error(error.message || 'Error sending request');
     }
   };
 
@@ -150,114 +124,20 @@ ${requestForm.requestDetails ? `\n📝 Details: ${requestForm.requestDetails}` :
 
         <div className="card-wellness space-y-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground mb-4">{t.title}</h1>
-            <p className="text-muted-foreground">{t.description}</p>
+            <h1 className="text-3xl font-bold text-foreground mb-4">{content[language].title}</h1>
+            <p className="text-muted-foreground">{content[language].description}</p>
           </div>
 
-          {/* Request Type Selection */}
-          {!requestType && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <button
-                onClick={() => setRequestType('access')}
-                className="card-wellness p-6 text-left hover:bg-accent/50 transition-colors"
-              >
-                <FileText className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-xl font-semibold mb-2">{t.accessTitle}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {language === 'ru' 
-                    ? 'Запросить копию ваших персональных данных'
-                    : 'Request a copy of your personal data'}
-                </p>
-              </button>
-              <button
-                onClick={() => setRequestType('delete')}
-                className="card-wellness p-6 text-left hover:bg-accent/50 transition-colors"
-              >
-                <Trash2 className="w-8 h-8 text-destructive mb-3" />
-                <h3 className="text-xl font-semibold mb-2">{t.deleteTitle}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {language === 'ru' 
-                    ? 'Запросить удаление ваших персональных данных'
-                    : 'Request deletion of your personal data'}
-                </p>
-              </button>
-            </div>
-          )}
-
-          {/* Request Form */}
-          {requestType && (
-            <form onSubmit={handleRequestSubmit} className="space-y-4">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold">
-                  {requestType === 'access' ? t.accessTitle : t.deleteTitle}
-                </h2>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => setRequestType(null)}
-                >
-                  {language === 'ru' ? 'Назад' : 'Back'}
-                </Button>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">{t.nameLabel} *</label>
-                <input
-                  type="text"
-                  className="input-field w-full"
-                  value={requestForm.name}
-                  onChange={(e) => setRequestForm({ ...requestForm, name: e.target.value })}
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">{t.emailLabel} *</label>
-                <input
-                  type="email"
-                  className="input-field w-full"
-                  value={requestForm.email}
-                  onChange={(e) => setRequestForm({ ...requestForm, email: e.target.value })}
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">{t.dateLabel} *</label>
-                <input
-                  type="date"
-                  className="input-field w-full"
-                  value={requestForm.date}
-                  onChange={(e) => setRequestForm({ ...requestForm, date: e.target.value })}
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">{t.detailsLabel}</label>
-                <textarea
-                  className="input-field w-full min-h-[100px]"
-                  value={requestForm.requestDetails}
-                  onChange={(e) => setRequestForm({ ...requestForm, requestDetails: e.target.value })}
-                />
-              </div>
-
-              <Button type="submit" className="w-full">
-                {t.submitRequest}
-              </Button>
-            </form>
-          )}
-
           {/* Submitted Data List */}
-          <div className="border-t pt-6">
-            <h2 className="text-xl font-semibold mb-4">{t.submittedData}</h2>
+          <div>
+            <h2 className="text-xl font-semibold mb-4">{content[language].submittedData}</h2>
             {submittedData.length === 0 ? (
-              <p className="text-muted-foreground">{t.noData}</p>
+              <p className="text-muted-foreground">{content[language].noData}</p>
             ) : (
               <div className="space-y-3">
                 {submittedData.map((data) => (
                   <div key={data.messageId} className="card-wellness p-4 flex items-center justify-between">
-                    <div>
+                    <div className="flex-1">
                       <p className="font-medium">{data.name}</p>
                       <p className="text-sm text-muted-foreground">{data.contactInfo}</p>
                       <p className="text-xs text-muted-foreground">
@@ -273,12 +153,12 @@ ${requestForm.requestDetails ? `\n📝 Details: ${requestForm.requestDetails}` :
                       {isDeleting === data.messageId ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                          {t.deleting}
+                          {content[language].deleting}
                         </>
                       ) : (
                         <>
                           <Trash2 className="w-4 h-4 mr-2" />
-                          {t.deleteButton}
+                          {content[language].deleteButton}
                         </>
                       )}
                     </Button>
