@@ -17,67 +17,38 @@ const DataRequest: React.FC = () => {
   const { language } = useLanguage();
   const [submittedData, setSubmittedData] = useState<SubmittedData[]>(getSubmittedDataList());
   const [isDeleting, setIsDeleting] = useState<number | null>(null);
-  const [requestType, setRequestType] = useState<'access' | 'delete' | null>(null);
 
   // Refresh submitted data list on mount
   useEffect(() => {
     setSubmittedData(getSubmittedDataList());
   }, []);
-  const [requestForm, setRequestForm] = useState({
-    name: '',
-    email: '',
-    date: '',
-    requestDetails: '',
-  });
 
   const content = {
     ru: {
-      title: 'Запрос на доступ или удаление данных',
+      title: 'Мои отправленные анкеты',
       backToHome: 'Вернуться на главную',
-      description: 'В соответствии с CCPA, вы имеете право запросить доступ к вашим данным или их удаление. Мы обработаем ваш запрос в течение 45 дней.',
-      accessTitle: 'Запрос на доступ к данным',
-      deleteTitle: 'Запрос на удаление данных',
-      selectRequest: 'Выберите тип запроса',
-      nameLabel: 'Ваше имя (как указано в анкете)',
-      emailLabel: 'Email для связи',
-      dateLabel: 'Дата заполнения анкеты (примерно)',
-      detailsLabel: 'Дополнительная информация (необязательно)',
-      submitRequest: 'Отправить запрос',
-      submitting: 'Отправка...',
+      description: 'Здесь вы можете просмотреть все отправленные вами анкеты и удалить свои данные в соответствии с CCPA.',
       submittedData: 'Отправленные анкеты',
       deleteButton: 'Удалить',
       deleting: 'Удаление...',
       noData: 'Нет отправленных анкет',
       deleteSuccess: 'Данные успешно удалены',
       deleteError: 'Ошибка при удалении данных',
-      requestSent: 'Запрос отправлен. Мы свяжемся с вами в течение 45 дней.',
-      fillAllFields: 'Заполните все обязательные поля',
+      deleteWarning: 'Вы уверены, что хотите удалить эти данные? Это действие нельзя отменить.',
     },
     en: {
-      title: 'Data Access or Deletion Request',
+      title: 'My Submitted Questionnaires',
       backToHome: 'Back to home',
-      description: 'In accordance with CCPA, you have the right to request access to your data or its deletion. We will process your request within 45 days.',
-      accessTitle: 'Request Access to Data',
-      deleteTitle: 'Request Data Deletion',
-      selectRequest: 'Select request type',
-      nameLabel: 'Your name (as provided in questionnaire)',
-      emailLabel: 'Email for contact',
-      dateLabel: 'Date you filled out the questionnaire (approximately)',
-      detailsLabel: 'Additional information (optional)',
-      submitRequest: 'Submit Request',
-      submitting: 'Submitting...',
+      description: 'Here you can view all questionnaires you have submitted and delete your data in accordance with CCPA.',
       submittedData: 'Submitted Questionnaires',
       deleteButton: 'Delete',
       deleting: 'Deleting...',
       noData: 'No submitted questionnaires',
       deleteSuccess: 'Data successfully deleted',
       deleteError: 'Error deleting data',
-      requestSent: 'Request sent. We will contact you within 45 days.',
-      fillAllFields: 'Please fill all required fields',
+      deleteWarning: 'Are you sure you want to delete this data? This action cannot be undone.',
     },
   };
-
-  const t = content[language];
 
   const handleDelete = async (messageId: number) => {
     if (!window.confirm(content[language].deleteWarning)) {
@@ -118,7 +89,7 @@ const DataRequest: React.FC = () => {
             className="inline-flex items-center gap-2 text-primary hover:underline"
           >
             <Home className="w-4 h-4" />
-            {t.backToHome}
+            {content[language].backToHome}
           </Link>
         </div>
 
