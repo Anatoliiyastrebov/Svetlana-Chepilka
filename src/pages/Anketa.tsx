@@ -94,7 +94,7 @@ const Anketa: React.FC = () => {
         return newErrors;
       });
     }
-    // If pregnancy_problems changed to "no", clear additional field error
+    // If pregnancy_problems changed to "no", clear additional field error (for infant/child)
     if (questionId === 'pregnancy_problems' && value === 'no') {
       setErrors((prev) => {
         const newErrors = { ...prev };
@@ -102,7 +102,7 @@ const Anketa: React.FC = () => {
         return newErrors;
       });
     }
-    // If injuries changed to only "no_issues" or empty, clear additional field error
+    // If injuries changed to only "no_issues" or empty, clear additional field error (for infant/child)
     if (questionId === 'injuries') {
       const injuriesArray = Array.isArray(value) ? value : [value];
       const hasOtherThanNoIssues = injuriesArray.some((val: string) => val !== 'no_issues');
@@ -114,7 +114,27 @@ const Anketa: React.FC = () => {
         });
       }
     }
-    // If allergies changed and "other" is not selected, clear additional field error
+    // If serious_injuries changed to "no", clear additional field error (for adult)
+    if (questionId === 'serious_injuries' && value === 'no') {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors['serious_injuries_additional'];
+        return newErrors;
+      });
+    }
+    // If allergies_present changed and "other" is not selected, clear additional field error
+    if (questionId === 'allergies_present') {
+      const allergiesArray = Array.isArray(value) ? value : [value];
+      const hasOther = allergiesArray.includes('other');
+      if (!hasOther) {
+        setErrors((prev) => {
+          const newErrors = { ...prev };
+          delete newErrors['allergies_present_additional'];
+          return newErrors;
+        });
+      }
+    }
+    // If allergies changed and "other" is not selected, clear additional field error (for backward compatibility)
     if (questionId === 'allergies') {
       const allergiesArray = Array.isArray(value) ? value : [value];
       const hasOther = allergiesArray.includes('other');
@@ -126,7 +146,19 @@ const Anketa: React.FC = () => {
         });
       }
     }
-    // If skin_condition changed and "other" is not selected, clear additional field error
+    // If skin_problems changed and "other" is not selected, clear additional field error
+    if (questionId === 'skin_problems') {
+      const skinProblemsArray = Array.isArray(value) ? value : [value];
+      const hasOther = skinProblemsArray.includes('other');
+      if (!hasOther) {
+        setErrors((prev) => {
+          const newErrors = { ...prev };
+          delete newErrors['skin_problems_additional'];
+          return newErrors;
+        });
+      }
+    }
+    // If skin_condition changed and "other" is not selected, clear additional field error (for backward compatibility)
     if (questionId === 'skin_condition') {
       const skinConditionArray = Array.isArray(value) ? value : [value];
       const hasOther = skinConditionArray.includes('other');
@@ -134,6 +166,30 @@ const Anketa: React.FC = () => {
         setErrors((prev) => {
           const newErrors = { ...prev };
           delete newErrors['skin_condition_additional'];
+          return newErrors;
+        });
+      }
+    }
+    // If chronic_autoimmune changed and "other" is not selected, clear additional field error
+    if (questionId === 'chronic_autoimmune') {
+      const chronicArray = Array.isArray(value) ? value : [value];
+      const hasOther = chronicArray.includes('other');
+      if (!hasOther) {
+        setErrors((prev) => {
+          const newErrors = { ...prev };
+          delete newErrors['chronic_autoimmune_additional'];
+          return newErrors;
+        });
+      }
+    }
+    // If covid_complications changed and "other" is not selected, clear additional field error
+    if (questionId === 'covid_complications') {
+      const covidArray = Array.isArray(value) ? value : [value];
+      const hasOther = covidArray.includes('other');
+      if (!hasOther) {
+        setErrors((prev) => {
+          const newErrors = { ...prev };
+          delete newErrors['covid_complications_additional'];
           return newErrors;
         });
       }

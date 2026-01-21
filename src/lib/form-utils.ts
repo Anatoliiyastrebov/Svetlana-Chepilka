@@ -203,7 +203,7 @@ export const validateForm = (
     }
   }
 
-  // Special validation: if pregnancy_problems is "yes", additional field is required
+  // Special validation: if pregnancy_problems is "yes", additional field is required (for infant/child questionnaires)
   if (formData['pregnancy_problems'] === 'yes' && additionalData) {
     const pregnancyProblemsAdditional = additionalData['pregnancy_problems_additional'];
     if (!pregnancyProblemsAdditional || pregnancyProblemsAdditional.trim() === '') {
@@ -211,7 +211,7 @@ export const validateForm = (
     }
   }
 
-  // Special validation: if injuries has any option selected except "no_issues", additional field is required
+  // Special validation: if injuries has any option selected except "no_issues", additional field is required (for infant/child questionnaires)
   if (formData['injuries'] && additionalData) {
     const injuriesValue = formData['injuries'];
     const injuriesArray = Array.isArray(injuriesValue) ? injuriesValue : [injuriesValue];
@@ -225,7 +225,28 @@ export const validateForm = (
     }
   }
 
-  // Special validation: if allergies has "other" selected, additional field is required
+  // Special validation: if serious_injuries is "yes", additional field is required (for adult questionnaires)
+  if (formData['serious_injuries'] === 'yes' && additionalData) {
+    const seriousInjuriesAdditional = additionalData['serious_injuries_additional'];
+    if (!seriousInjuriesAdditional || seriousInjuriesAdditional.trim() === '') {
+      errors['serious_injuries_additional'] = t.required;
+    }
+  }
+
+  // Special validation: if allergies_present has "other" selected, additional field is required
+  if (formData['allergies_present'] && additionalData) {
+    const allergiesValue = formData['allergies_present'];
+    const allergiesArray = Array.isArray(allergiesValue) ? allergiesValue : [allergiesValue];
+    const hasOther = allergiesArray.includes('other');
+    if (hasOther) {
+      const allergiesAdditional = additionalData['allergies_present_additional'];
+      if (!allergiesAdditional || allergiesAdditional.trim() === '') {
+        errors['allergies_present_additional'] = t.required;
+      }
+    }
+  }
+
+  // Special validation: if allergies has "other" selected (for backward compatibility with child/infant)
   if (formData['allergies'] && additionalData) {
     const allergiesValue = formData['allergies'];
     const allergiesArray = Array.isArray(allergiesValue) ? allergiesValue : [allergiesValue];
@@ -238,7 +259,20 @@ export const validateForm = (
     }
   }
 
-  // Special validation: if skin_condition has "other" selected, additional field is required
+  // Special validation: if skin_problems has "other" selected, additional field is required
+  if (formData['skin_problems'] && additionalData) {
+    const skinProblemsValue = formData['skin_problems'];
+    const skinProblemsArray = Array.isArray(skinProblemsValue) ? skinProblemsValue : [skinProblemsValue];
+    const hasOther = skinProblemsArray.includes('other');
+    if (hasOther) {
+      const skinProblemsAdditional = additionalData['skin_problems_additional'];
+      if (!skinProblemsAdditional || skinProblemsAdditional.trim() === '') {
+        errors['skin_problems_additional'] = t.required;
+      }
+    }
+  }
+
+  // Special validation: if skin_condition has "other" selected (for backward compatibility)
   if (formData['skin_condition'] && additionalData) {
     const skinConditionValue = formData['skin_condition'];
     const skinConditionArray = Array.isArray(skinConditionValue) ? skinConditionValue : [skinConditionValue];
@@ -251,6 +285,32 @@ export const validateForm = (
     }
   }
 
+  // Special validation: if chronic_autoimmune has "other" selected, additional field is required
+  if (formData['chronic_autoimmune'] && additionalData) {
+    const chronicValue = formData['chronic_autoimmune'];
+    const chronicArray = Array.isArray(chronicValue) ? chronicValue : [chronicValue];
+    const hasOther = chronicArray.includes('other');
+    if (hasOther) {
+      const chronicAdditional = additionalData['chronic_autoimmune_additional'];
+      if (!chronicAdditional || chronicAdditional.trim() === '') {
+        errors['chronic_autoimmune_additional'] = t.required;
+      }
+    }
+  }
+
+  // Special validation: if covid_complications has "other" selected, additional field is required
+  if (formData['covid_complications'] && additionalData) {
+    const covidValue = formData['covid_complications'];
+    const covidArray = Array.isArray(covidValue) ? covidValue : [covidValue];
+    const hasOther = covidArray.includes('other');
+    if (hasOther) {
+      const covidAdditional = additionalData['covid_complications_additional'];
+      if (!covidAdditional || covidAdditional.trim() === '') {
+        errors['covid_complications_additional'] = t.required;
+      }
+    }
+  }
+
   // Special validation: if how_learned is "recommendation", additional field is required
   if (formData['how_learned'] === 'recommendation' && additionalData) {
     const howLearnedAdditional = additionalData['how_learned_additional'];
@@ -259,7 +319,7 @@ export const validateForm = (
     }
   }
 
-  // Special validation: if diabetes has "diabetes_stage" selected, additional field is required
+  // Special validation: if diabetes has "diabetes_stage" selected (for backward compatibility)
   if (formData['diabetes'] && additionalData) {
     const diabetesValue = formData['diabetes'];
     const diabetesArray = Array.isArray(diabetesValue) ? diabetesValue : [diabetesValue];
@@ -336,8 +396,8 @@ export const generateMarkdown = (
       if (value && (Array.isArray(value) ? value.length > 0 : value.trim() !== '')) {
         const label = question.label[lang];
         
-        // Question number - start numbering from "digestion" question
-        if (question.id === 'digestion') {
+        // Question number - start numbering from "digestion" or "digestion_problems" question
+        if (question.id === 'digestion' || question.id === 'digestion_problems') {
           digestionQuestionPassed = true;
           questionNumber = 1;
         }
