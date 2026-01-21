@@ -53,6 +53,7 @@ const Anketa: React.FC = () => {
     instagram: '',
     phone: '',
   });
+  const [uploadedFiles, setUploadedFiles] = useState<Record<string, File[]>>({});
   const [dsgvoAccepted, setDsgvoAccepted] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -76,8 +77,16 @@ const Anketa: React.FC = () => {
     return () => clearTimeout(timeout);
   }, [formData, additionalData, contactData, type, language]);
 
-  const handleFieldChange = (questionId: string, value: string | string[]) => {
-    setFormData((prev) => ({ ...prev, [questionId]: value }));
+  const handleFieldChange = (questionId: string, value: string | string[] | File[]) => {
+    // Check if value is File array (for file uploads)
+    if (Array.isArray(value) && value.length > 0 && value[0] instanceof File) {
+      setUploadedFiles((prev) => ({ ...prev, [questionId]: value as File[] }));
+      // Store file names in formData for display purposes
+      const fileNames = (value as File[]).map(f => f.name).join(', ');
+      setFormData((prev) => ({ ...prev, [questionId]: fileNames }));
+    } else {
+      setFormData((prev) => ({ ...prev, [questionId]: value }));
+    }
     // Clear error when user starts typing
     if (errors[questionId]) {
       setErrors((prev) => {
@@ -228,6 +237,7 @@ const Anketa: React.FC = () => {
     setFormData({});
     setAdditionalData({});
     setContactData({ telegram: '', instagram: '', phone: '' });
+    setUploadedFiles({});
     setDsgvoAccepted(false);
     setErrors({});
     clearFormData(type, language);
@@ -260,7 +270,9 @@ const Anketa: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const result = await sendToTelegram(markdown);
+      // Get files for attach_files question
+      const filesToSend = uploadedFiles['attach_files'] || [];
+      const result = await sendToTelegram(markdown, filesToSend);
       
       if (result.success) {
         // Save submitted data with message_id for CCPA compliance
@@ -347,7 +359,11 @@ const Anketa: React.FC = () => {
                   >
                     <QuestionField
                       question={question}
-                      value={formData[question.id] || (question.type === 'checkbox' ? [] : '')}
+                      value={
+                        question.type === 'file'
+                          ? (uploadedFiles[question.id] || [])
+                          : formData[question.id] || (question.type === 'checkbox' ? [] : '')
+                      }
                       additionalValue={additionalData[`${question.id}_additional`] || ''}
                       error={errors[question.id]}
                       additionalError={errors[`${question.id}_additional`]}

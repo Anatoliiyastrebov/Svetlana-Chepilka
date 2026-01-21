@@ -5,11 +5,11 @@ import { SectionIcon } from '@/components/icons/SectionIcons';
 
 interface QuestionFieldProps {
   question: Question;
-  value: string | string[];
+  value: string | string[] | File[];
   additionalValue: string;
   error?: string;
   additionalError?: string;
-  onChange: (value: string | string[]) => void;
+  onChange: (value: string | string[] | File[]) => void;
   onAdditionalChange: (value: string) => void;
 }
 
@@ -132,6 +132,55 @@ export const QuestionField: React.FC<QuestionFieldProps> = ({
                 <span className="text-sm font-medium">{option.label[language]}</span>
               </label>
             ))}
+          </div>
+        );
+
+      case 'file':
+        const files = Array.isArray(value) && value.length > 0 && value[0] instanceof File 
+          ? (value as File[]) 
+          : [];
+        return (
+          <div className="space-y-2">
+            <input
+              type="file"
+              multiple
+              accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx"
+              className={`input-field ${error ? 'input-error' : ''}`}
+              onChange={(e) => {
+                const selectedFiles = Array.from(e.target.files || []);
+                onChange(selectedFiles);
+              }}
+            />
+            {files.length > 0 && (
+              <div className="mt-2 space-y-1">
+                <p className="text-sm text-muted-foreground">
+                  {language === 'ru' ? 'Выбранные файлы:' : 'Selected files:'}
+                </p>
+                {files.map((file, index) => (
+                  <div key={index} className="flex items-center gap-2 text-sm bg-secondary p-2 rounded">
+                    <span className="text-foreground">{file.name}</span>
+                    <span className="text-muted-foreground">
+                      ({(file.size / 1024 / 1024).toFixed(2)} MB)
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const newFiles = files.filter((_, i) => i !== index);
+                        onChange(newFiles);
+                      }}
+                      className="ml-auto text-destructive hover:text-destructive/80"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+            <p className="text-xs text-muted-foreground">
+              {language === 'ru' 
+                ? 'Можно загрузить несколько файлов. Поддерживаемые форматы: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX' 
+                : 'You can upload multiple files. Supported formats: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX'}
+            </p>
           </div>
         );
 

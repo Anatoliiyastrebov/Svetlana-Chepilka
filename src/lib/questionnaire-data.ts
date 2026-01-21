@@ -1,6 +1,6 @@
 import { Language } from './translations';
 
-export type QuestionType = 'text' | 'number' | 'radio' | 'checkbox' | 'textarea';
+export type QuestionType = 'text' | 'number' | 'radio' | 'checkbox' | 'textarea' | 'file';
 
 export interface QuestionOption {
   value: string;
@@ -305,6 +305,7 @@ const weightSatisfactionOptions: QuestionOption[] = [
 
 // New options for adult questionnaires
 const covidComplicationsOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Не наблюдаю', en: 'Not observed' } },
   { value: 'hair_loss', label: { ru: 'Выпадение волос', en: 'Hair loss' } },
   { value: 'heart_problems', label: { ru: 'Проблемы с сердцем', en: 'Heart problems' } },
   { value: 'joint_pain', label: { ru: 'Боли в суставах', en: 'Joint pain' } },
@@ -315,6 +316,7 @@ const covidComplicationsOptions: QuestionOption[] = [
 ];
 
 const digestionNewOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Не беспокоит', en: 'No issues' } },
   { value: 'heartburn', label: { ru: 'Изжога', en: 'Heartburn' } },
   { value: 'bitterness', label: { ru: 'Горечь во рту', en: 'Bitterness in mouth' } },
   { value: 'bloating', label: { ru: 'Вздутие', en: 'Bloating' } },
@@ -326,6 +328,7 @@ const digestionNewOptions: QuestionOption[] = [
 ];
 
 const hairNewOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Не наблюдаю', en: 'Not observed' } },
   { value: 'severe_loss', label: { ru: 'Сильное выпадение', en: 'Severe hair loss' } },
   { value: 'dryness', label: { ru: 'Сухость', en: 'Dryness' } },
   { value: 'oiliness', label: { ru: 'Жирность', en: 'Oiliness' } },
@@ -333,6 +336,7 @@ const hairNewOptions: QuestionOption[] = [
 ];
 
 const chronicDiseasesOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Нет', en: 'No' } },
   { value: 'diabetes', label: { ru: 'Диабет', en: 'Diabetes' } },
   { value: 'autoimmune_thyroiditis', label: { ru: 'Аутоиммунный тиреоидит', en: 'Autoimmune thyroiditis' } },
   { value: 'arthritis', label: { ru: 'Артрит', en: 'Arthritis' } },
@@ -341,6 +345,7 @@ const chronicDiseasesOptions: QuestionOption[] = [
 ];
 
 const nervousSystemOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Не беспокоит', en: 'No issues' } },
   { value: 'headaches', label: { ru: 'Головные боли', en: 'Headaches' } },
   { value: 'migraines', label: { ru: 'Мигрени', en: 'Migraines' } },
   { value: 'weather_dependency', label: { ru: 'Метеозависимость', en: 'Weather dependency' } },
@@ -351,11 +356,13 @@ const nervousSystemOptions: QuestionOption[] = [
 ];
 
 const circulationOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Не наблюдаю', en: 'Not observed' } },
   { value: 'numbness', label: { ru: 'Онемение пальцев рук или ног', en: 'Numbness of fingers or toes' } },
   { value: 'cold_limbs', label: { ru: 'Мёрзнут руки и ноги даже летом', en: 'Cold hands and feet even in summer' } },
 ];
 
 const vesselsSkinOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Не наблюдаю', en: 'Not observed' } },
   { value: 'varicose_network', label: { ru: 'Варикоз: сосудистая сетка', en: 'Varicose: vascular network' } },
   { value: 'varicose_veins', label: { ru: 'Варикоз: выраженные вены', en: 'Varicose: prominent veins' } },
   { value: 'hemorrhoids', label: { ru: 'Геморрой: есть', en: 'Hemorrhoids: present' } },
@@ -364,6 +371,7 @@ const vesselsSkinOptions: QuestionOption[] = [
 ];
 
 const jointsSpineOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Не беспокоит', en: 'No issues' } },
   { value: 'crunch', label: { ru: 'Хруст / скрип', en: 'Crunching / squeaking' } },
   { value: 'inflammation', label: { ru: 'Воспаления', en: 'Inflammation' } },
   { value: 'arthrosis', label: { ru: 'Артроз', en: 'Arthrosis' } },
@@ -374,6 +382,7 @@ const jointsSpineOptions: QuestionOption[] = [
 ];
 
 const formationsOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Нет', en: 'No' } },
   { value: 'cysts', label: { ru: 'Кисты', en: 'Cysts' } },
   { value: 'polyps', label: { ru: 'Полипы', en: 'Polyps' } },
   { value: 'fibroids', label: { ru: 'Миомы', en: 'Fibroids' } },
@@ -382,6 +391,7 @@ const formationsOptions: QuestionOption[] = [
 ];
 
 const infectionsDischargeOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Не наблюдаю', en: 'Not observed' } },
   { value: 'herpes', label: { ru: 'Герпес', en: 'Herpes' } },
   { value: 'papillomas', label: { ru: 'Папилломы', en: 'Papillomas' } },
   { value: 'warts', label: { ru: 'Бородавки', en: 'Warts' } },
@@ -393,6 +403,7 @@ const infectionsDischargeOptions: QuestionOption[] = [
 ];
 
 const menstruationNewOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Не беспокоит', en: 'No issues' } },
   { value: 'regular', label: { ru: 'Регулярные', en: 'Regular' } },
   { value: 'irregular', label: { ru: 'Нерегулярные', en: 'Irregular' } },
   { value: 'painful', label: { ru: 'Болезненные', en: 'Painful' } },
@@ -401,6 +412,7 @@ const menstruationNewOptions: QuestionOption[] = [
 ];
 
 const skinNewOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Не наблюдаю', en: 'Not observed' } },
   { value: 'acne', label: { ru: 'Прыщи', en: 'Acne' } },
   { value: 'acne_severe', label: { ru: 'Акне', en: 'Severe acne' } },
   { value: 'furuncles', label: { ru: 'Фурункулы', en: 'Furuncles' } },
@@ -412,6 +424,7 @@ const skinNewOptions: QuestionOption[] = [
 ];
 
 const allergiesNewOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Нет', en: 'No' } },
   { value: 'pollen', label: { ru: 'Пыльца', en: 'Pollen' } },
   { value: 'food', label: { ru: 'Еда', en: 'Food' } },
   { value: 'animal_hair', label: { ru: 'Шерсть животных', en: 'Animal hair' } },
@@ -420,12 +433,14 @@ const allergiesNewOptions: QuestionOption[] = [
 ];
 
 const sleepNewOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Не беспокоит', en: 'No issues' } },
   { value: 'hard_to_fall_asleep', label: { ru: 'Трудно заснуть', en: 'Hard to fall asleep' } },
   { value: 'frequent_waking', label: { ru: 'Частые пробуждения', en: 'Frequent waking' } },
   { value: 'light_sleep', label: { ru: 'Поверхностный сон', en: 'Light sleep' } },
 ];
 
 const energyNewOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Не беспокоит', en: 'No issues' } },
   { value: 'hard_to_wake', label: { ru: 'Тяжело просыпаться', en: 'Hard to wake up' } },
   { value: 'no_energy', label: { ru: 'Нет энергии', en: 'No energy' } },
   { value: 'need_coffee', label: { ru: 'Нужен кофе', en: 'Need coffee' } },
@@ -433,6 +448,7 @@ const energyNewOptions: QuestionOption[] = [
 ];
 
 const memoryConcentrationOptions: QuestionOption[] = [
+  { value: 'no_issues', label: { ru: 'Не беспокоит', en: 'No issues' } },
   { value: 'memory_decline', label: { ru: 'Ухудшение памяти', en: 'Memory decline' } },
   { value: 'concentration_difficulties', label: { ru: 'Трудности с концентрацией', en: 'Concentration difficulties' } },
   { value: 'forgetfulness', label: { ru: 'Забывчивость', en: 'Forgetfulness' } },
@@ -446,6 +462,7 @@ const lifestyleOptions: QuestionOption[] = [
   { value: 'high_stress', label: { ru: 'Высокий уровень стресса', en: 'High stress level' } },
   { value: 'physical_work', label: { ru: 'Физически тяжёлая работа', en: 'Physically heavy work' } },
   { value: 'toxic_contact', label: { ru: 'Контакт с токсичными веществами', en: 'Contact with toxic substances' } },
+  { value: 'other', label: { ru: 'Другое', en: 'Other' } },
 ];
 
 const supplementsOptions: QuestionOption[] = [
@@ -1475,12 +1492,11 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       },
       {
         id: 'attach_files',
-        type: 'textarea',
-        label: { ru: 'Возможность прикрепить файлы (опишите, какие анализы/обследования у вас есть)', en: 'Possibility to attach files (describe what tests/examinations you have)' },
+        type: 'file',
+        label: { ru: 'Прикрепите файлы с анализами и обследованиями', en: 'Attach files with test results and examinations' },
         icon: 'file-text',
         required: false,
         hasAdditional: false,
-        placeholder: { ru: 'Опишите имеющиеся анализы и обследования', en: 'Describe available tests and examinations' },
       },
     ],
   },
@@ -2147,12 +2163,11 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       },
       {
         id: 'attach_files',
-        type: 'textarea',
-        label: { ru: 'Возможность прикрепить файлы (опишите, какие анализы/обследования у вас есть)', en: 'Possibility to attach files (describe what tests/examinations you have)' },
+        type: 'file',
+        label: { ru: 'Прикрепите файлы с анализами и обследованиями', en: 'Attach files with test results and examinations' },
         icon: 'file-text',
         required: false,
         hasAdditional: false,
-        placeholder: { ru: 'Опишите имеющиеся анализы и обследования', en: 'Describe available tests and examinations' },
       },
     ],
   },

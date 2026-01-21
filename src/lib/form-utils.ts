@@ -404,7 +404,10 @@ export const generateMarkdown = (
         
         // Format answer
         let answerText = '';
-        if (Array.isArray(value)) {
+        if (question.type === 'file') {
+          // For file fields, show file names (value is stored as comma-separated string in formData)
+          answerText = String(value);
+        } else if (Array.isArray(value)) {
           const optionLabels = value.map((v) => {
             const opt = question.options?.find((o) => o.value === v);
             return opt ? opt.label[lang] : v;
@@ -469,11 +472,55 @@ export const generateMarkdown = (
   return html;
 };
 
+// Send file to Telegram
+const sendFileToTelegram = async (
+  botToken: string,
+  chatId: string,
+  file: File,
+  caption?: string
+): Promise<{ success: boolean; error?: string }> => {
+  try {
+    const formData = new FormData();
+    formData.append('chat_id', chatId);
+    formData.append('document', file, file.name);
+    if (caption) {
+      formData.append('caption', caption);
+    }
+
+    const response = await fetch(
+      `https://api.telegram.org/bot${botToken}/sendDocument`,
+      {
+        method: 'POST',
+        body: formData,
+      }
+    );
+
+    const responseData = await response.json();
+
+    if (!response.ok || !responseData.ok) {
+      const errorMsg = responseData.description || 'Failed to send file';
+      console.error('Telegram file upload error:', errorMsg);
+      return { success: false, error: errorMsg };
+    }
+
+    return { success: true };
+  } catch (error: any) {
+    console.error('Error sending file to Telegram:', error);
+    return { 
+      success: false, 
+      error: error.message || 'Unknown error occurred' 
+    };
+  }
+};
+
 // Send to Telegram
 // SECURITY NOTE: In production, use environment variables or a server-side proxy
 // Do not expose BOT_TOKEN in client-side code in production!
 // For development: Set VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID in .env file
-export const sendToTelegram = async (markdown: string): Promise<{ success: boolean; error?: string; messageId?: number }> => {
+export const sendToTelegram = async (
+  markdown: string,
+  files: File[] = []
+): Promise<{ success: boolean; error?: string; messageId?: number }> => {
   // Try to get from environment variables first (for Vite: VITE_ prefix)
   const BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
   const CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
@@ -576,10 +623,38 @@ Current status:
     }
 
     const messageId = responseData.result?.message_id;
-    console.log('Successfully sent to Telegram', { 
+    console.log('Successfully sent message to Telegram', { 
       messageId,
-      fullResponse: responseData 
+      filesCount: files.length
     });
+
+    // Send files if any
+    if (files.length > 0) {
+      console.log('Sending files to Telegram...', { count: files.length });
+      const fileResults = await Promise.allSettled(
+        files.map((file, index) => 
+          sendFileToTelegram(
+            BOT_TOKEN,
+            CHAT_ID,
+            file,
+            index === 0 ? `Файлы к анкете (${files.length} файлов)` : undefined
+          )
+        )
+      );
+
+      const failedFiles = fileResults
+        .map((result, index) => ({ result, index }))
+        .filter(({ result }) => result.status === 'rejected' || 
+          (result.status === 'fulfilled' && !result.value.success));
+
+      if (failedFiles.length > 0) {
+        console.warn('Some files failed to upload:', failedFiles);
+        // Don't fail the whole submission if files fail, but log it
+      } else {
+        console.log('All files sent successfully');
+      }
+    }
+
     return { 
       success: true, 
       messageId: messageId 
