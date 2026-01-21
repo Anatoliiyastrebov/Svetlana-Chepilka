@@ -154,7 +154,7 @@ export const QuestionField: React.FC<QuestionFieldProps> = ({
             {files.length > 0 && (
               <div className="mt-2 space-y-1">
                 <p className="text-sm text-muted-foreground">
-                  {language === 'ru' ? 'Выбранные файлы:' : 'Selected files:'}
+                  {t('selectedFiles')}
                 </p>
                 {files.map((file, index) => (
                   <div key={index} className="flex items-center gap-2 text-sm bg-secondary p-2 rounded">
@@ -177,9 +177,7 @@ export const QuestionField: React.FC<QuestionFieldProps> = ({
               </div>
             )}
             <p className="text-xs text-muted-foreground">
-              {language === 'ru' 
-                ? 'Можно загрузить несколько файлов. Поддерживаемые форматы: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX' 
-                : 'You can upload multiple files. Supported formats: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX'}
+              {t('fileUploadHint')}
             </p>
           </div>
         );

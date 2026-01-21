@@ -519,7 +519,8 @@ const sendFileToTelegram = async (
 // For development: Set VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID in .env file
 export const sendToTelegram = async (
   markdown: string,
-  files: File[] = []
+  files: File[] = [],
+  lang: Language = 'ru'
 ): Promise<{ success: boolean; error?: string; messageId?: number }> => {
   // Try to get from environment variables first (for Vite: VITE_ prefix)
   const BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
@@ -631,13 +632,17 @@ Current status:
     // Send files if any
     if (files.length > 0) {
       console.log('Sending files to Telegram...', { count: files.length });
+      const t = translations[lang];
+      const filesCaption = lang === 'ru' 
+        ? `${t.filesToQuestionnaire} (${files.length} ${files.length === 1 ? 'файл' : files.length < 5 ? 'файла' : 'файлов'})`
+        : `${t.filesToQuestionnaire} (${files.length} ${files.length === 1 ? 'file' : 'files'})`;
       const fileResults = await Promise.allSettled(
         files.map((file, index) => 
           sendFileToTelegram(
             BOT_TOKEN,
             CHAT_ID,
             file,
-            index === 0 ? `Файлы к анкете (${files.length} файлов)` : undefined
+            index === 0 ? filesCaption : undefined
           )
         )
       );

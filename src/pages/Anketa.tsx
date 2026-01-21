@@ -272,7 +272,7 @@ const Anketa: React.FC = () => {
     try {
       // Get files for attach_files question
       const filesToSend = uploadedFiles['attach_files'] || [];
-      const result = await sendToTelegram(markdown, filesToSend);
+      const result = await sendToTelegram(markdown, filesToSend, language);
       
       if (result.success) {
         // Save submitted data with message_id for CCPA compliance

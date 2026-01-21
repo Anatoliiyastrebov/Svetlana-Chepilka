@@ -192,6 +192,11 @@ export const translations = {
     mdWoman: '🌸 Женская анкета',
     mdMan: '👨 Мужская анкета',
     mdContacts: '📞 Контакты',
+    
+    // File upload
+    selectedFiles: 'Выбранные файлы:',
+    fileUploadHint: 'Можно загрузить несколько файлов. Поддерживаемые форматы: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX',
+    filesToQuestionnaire: 'Файлы к анкете',
   },
   
   en: {
@@ -385,6 +390,11 @@ export const translations = {
     mdWoman: '🌸 Women\'s',
     mdMan: '👨 Men\'s',
     mdContacts: '📞 Contacts',
+    
+    // File upload
+    selectedFiles: 'Selected files:',
+    fileUploadHint: 'You can upload multiple files. Supported formats: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX',
+    filesToQuestionnaire: 'Files to questionnaire',
   }
 };
 
