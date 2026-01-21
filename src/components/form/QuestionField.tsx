@@ -23,6 +23,7 @@ export const QuestionField: React.FC<QuestionFieldProps> = ({
   onAdditionalChange,
 }) => {
   const { language, t } = useLanguage();
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const handleCheckboxChange = (optionValue: string, checked: boolean) => {
     const currentValues = Array.isArray(value) ? value : [];
@@ -142,15 +143,23 @@ export const QuestionField: React.FC<QuestionFieldProps> = ({
         return (
           <div className="space-y-2">
             <input
+              ref={fileInputRef}
               type="file"
               multiple
               accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx"
-              className={`input-field ${error ? 'input-error' : ''}`}
+              className="hidden"
               onChange={(e) => {
                 const selectedFiles = Array.from(e.target.files || []);
                 onChange(selectedFiles);
               }}
             />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className={`w-full px-4 py-2 text-sm font-medium rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors ${error ? 'border-destructive' : ''}`}
+            >
+              {t('selectFiles')}
+            </button>
             {files.length > 0 && (
               <div className="mt-2 space-y-1">
                 <p className="text-sm text-muted-foreground">

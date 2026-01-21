@@ -194,6 +194,7 @@ export const translations = {
     mdContacts: '📞 Контакты',
     
     // File upload
+    selectFiles: 'Выбрать файлы',
     selectedFiles: 'Выбранные файлы:',
     fileUploadHint: 'Можно загрузить несколько файлов. Поддерживаемые форматы: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX',
     filesToQuestionnaire: 'Файлы к анкете',
@@ -392,6 +393,7 @@ export const translations = {
     mdContacts: '📞 Contacts',
     
     // File upload
+    selectFiles: 'Select files',
     selectedFiles: 'Selected files:',
     fileUploadHint: 'You can upload multiple files. Supported formats: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX',
     filesToQuestionnaire: 'Files to questionnaire',

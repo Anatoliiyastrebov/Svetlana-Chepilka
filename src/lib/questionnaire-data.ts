@@ -305,7 +305,7 @@ const weightSatisfactionOptions: QuestionOption[] = [
 
 // New options for adult questionnaires
 const covidComplicationsOptions: QuestionOption[] = [
-  { value: 'no_issues', label: { ru: 'Не наблюдаю', en: 'Not observed' } },
+  { value: 'no_issues', label: { ru: 'Все в порядке', en: 'All good' } },
   { value: 'hair_loss', label: { ru: 'Выпадение волос', en: 'Hair loss' } },
   { value: 'heart_problems', label: { ru: 'Проблемы с сердцем', en: 'Heart problems' } },
   { value: 'joint_pain', label: { ru: 'Боли в суставах', en: 'Joint pain' } },
@@ -328,7 +328,7 @@ const digestionNewOptions: QuestionOption[] = [
 ];
 
 const hairNewOptions: QuestionOption[] = [
-  { value: 'no_issues', label: { ru: 'Не наблюдаю', en: 'Not observed' } },
+  { value: 'no_issues', label: { ru: 'Все в порядке', en: 'All good' } },
   { value: 'severe_loss', label: { ru: 'Сильное выпадение', en: 'Severe hair loss' } },
   { value: 'dryness', label: { ru: 'Сухость', en: 'Dryness' } },
   { value: 'oiliness', label: { ru: 'Жирность', en: 'Oiliness' } },
@@ -356,13 +356,13 @@ const nervousSystemOptions: QuestionOption[] = [
 ];
 
 const circulationOptions: QuestionOption[] = [
-  { value: 'no_issues', label: { ru: 'Не наблюдаю', en: 'Not observed' } },
+  { value: 'no_issues', label: { ru: 'Все в порядке', en: 'All good' } },
   { value: 'numbness', label: { ru: 'Онемение пальцев рук или ног', en: 'Numbness of fingers or toes' } },
   { value: 'cold_limbs', label: { ru: 'Мёрзнут руки и ноги даже летом', en: 'Cold hands and feet even in summer' } },
 ];
 
 const vesselsSkinOptions: QuestionOption[] = [
-  { value: 'no_issues', label: { ru: 'Не наблюдаю', en: 'Not observed' } },
+  { value: 'no_issues', label: { ru: 'Все в порядке', en: 'All good' } },
   { value: 'varicose_network', label: { ru: 'Варикоз: сосудистая сетка', en: 'Varicose: vascular network' } },
   { value: 'varicose_veins', label: { ru: 'Варикоз: выраженные вены', en: 'Varicose: prominent veins' } },
   { value: 'hemorrhoids', label: { ru: 'Геморрой: есть', en: 'Hemorrhoids: present' } },
@@ -391,7 +391,7 @@ const formationsOptions: QuestionOption[] = [
 ];
 
 const infectionsDischargeOptions: QuestionOption[] = [
-  { value: 'no_issues', label: { ru: 'Не наблюдаю', en: 'Not observed' } },
+  { value: 'no_issues', label: { ru: 'Все в порядке', en: 'All good' } },
   { value: 'herpes', label: { ru: 'Герпес', en: 'Herpes' } },
   { value: 'papillomas', label: { ru: 'Папилломы', en: 'Papillomas' } },
   { value: 'warts', label: { ru: 'Бородавки', en: 'Warts' } },
@@ -412,7 +412,7 @@ const menstruationNewOptions: QuestionOption[] = [
 ];
 
 const skinNewOptions: QuestionOption[] = [
-  { value: 'no_issues', label: { ru: 'Не наблюдаю', en: 'Not observed' } },
+  { value: 'no_issues', label: { ru: 'Все в порядке', en: 'All good' } },
   { value: 'acne', label: { ru: 'Прыщи', en: 'Acne' } },
   { value: 'acne_severe', label: { ru: 'Акне', en: 'Severe acne' } },
   { value: 'furuncles', label: { ru: 'Фурункулы', en: 'Furuncles' } },
