@@ -269,9 +269,13 @@ const Anketa: React.FC = () => {
 
     if (Object.keys(validationErrors).length > 0) {
       toast.error(t('required'));
-      // Scroll to first error
-      const firstErrorField = document.querySelector('[data-error="true"]');
-      firstErrorField?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Скролл к первому полю с ошибкой после обновления DOM
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const firstErrorField = document.querySelector('[data-error="true"]');
+          firstErrorField?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
       return;
     }
 
@@ -397,8 +401,18 @@ const Anketa: React.FC = () => {
             </div>
           ))}
 
-          {/* Contact Section */}
-          <ContactSection
+          {/* Contact Section — data-error для скролла при валидации */}
+          <div
+            data-error={
+              !!(
+                errors['contact_telegram'] ||
+                errors['contact_instagram'] ||
+                errors['contact_phone'] ||
+                errors['contact_method']
+              )
+            }
+          >
+            <ContactSection
             contactData={contactData}
             errors={{
               telegram: errors['contact_telegram'],
@@ -443,6 +457,7 @@ const Anketa: React.FC = () => {
               }
             }}
           />
+          </div>
 
           {/* DSGVO Checkbox */}
           <DSGVOCheckbox checked={dsgvoAccepted} onChange={setDsgvoAccepted} />
