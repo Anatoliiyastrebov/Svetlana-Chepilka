@@ -1051,7 +1051,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'digestion_problems',
         type: 'checkbox',
-        label: { ru: 'Пищеварение', en: 'Digestion' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'heart',
         options: digestionNewOptions,
         required: true,
@@ -1159,7 +1159,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'chronic_autoimmune',
         type: 'checkbox',
-        label: { ru: 'Хронические и аутоиммунные заболевания', en: 'Chronic and autoimmune diseases' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'alert-circle',
         options: chronicDiseasesOptions,
         required: true,
@@ -1176,7 +1176,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'nervous_system_problems',
         type: 'checkbox',
-        label: { ru: 'Нервная система', en: 'Nervous system' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'brain',
         options: nervousSystemOptions,
         required: true,
@@ -1193,7 +1193,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'circulation_problems',
         type: 'checkbox',
-        label: { ru: 'Кровообращение', en: 'Circulation' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'heart',
         options: circulationOptions,
         required: true,
@@ -1210,7 +1210,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'vessels_skin_problems',
         type: 'checkbox',
-        label: { ru: 'Сосуды и кожа', en: 'Vessels and skin' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'heart',
         options: vesselsSkinOptions,
         required: true,
@@ -1227,7 +1227,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'joints_spine_problems',
         type: 'checkbox',
-        label: { ru: 'Суставы и позвоночник', en: 'Joints and spine' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'bone',
         options: jointsSpineOptions,
         required: true,
@@ -1253,7 +1253,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'formations_present',
         type: 'checkbox',
-        label: { ru: 'Образования', en: 'Formations' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'circle',
         options: formationsOptions,
         required: true,
@@ -1270,7 +1270,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'infections_discharge_problems',
         type: 'checkbox',
-        label: { ru: 'Инфекции и выделения', en: 'Infections and discharge' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'alert-circle',
         options: infectionsDischargeOptions.filter(opt => opt.value !== 'discharge_male'),
         required: true,
@@ -1287,7 +1287,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'menstruation_problems',
         type: 'checkbox',
-        label: { ru: 'Месячные', en: 'Menstruation' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'calendar',
         options: menstruationNewOptions,
         required: true,
@@ -1304,7 +1304,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'skin_problems',
         type: 'checkbox',
-        label: { ru: 'Кожа', en: 'Skin' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'sparkles',
         options: skinNewOptions,
         required: true,
@@ -1321,7 +1321,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'allergies_present',
         type: 'checkbox',
-        label: { ru: 'Аллергии', en: 'Allergies' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'flower',
         options: allergiesNewOptions,
         required: true,
@@ -1364,7 +1364,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'sleep_problems',
         type: 'checkbox',
-        label: { ru: 'Сон', en: 'Sleep' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'moon',
         options: sleepNewOptions,
         required: true,
@@ -1381,7 +1381,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'energy_problems',
         type: 'checkbox',
-        label: { ru: 'Энергия', en: 'Energy' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'zap',
         options: energyNewOptions,
         required: true,
@@ -1398,7 +1398,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'memory_concentration_problems',
         type: 'checkbox',
-        label: { ru: 'Память и концентрация', en: 'Memory and concentration' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'brain',
         options: memoryConcentrationOptions,
         required: true,
@@ -1415,7 +1415,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'lifestyle_type',
         type: 'checkbox',
-        label: { ru: 'Образ жизни', en: 'Lifestyle' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'user',
         options: lifestyleOptions,
         required: true,
@@ -1458,7 +1458,7 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'supplements_usage',
         type: 'radio',
-        label: { ru: 'БАДы', en: 'Supplements' },
+        label: { ru: 'Как принимаете?', en: 'How do you take them?' },
         icon: 'pill',
         options: supplementsOptions,
         required: true,
@@ -1473,22 +1473,13 @@ export const womanQuestionnaire: QuestionnaireSection[] = [
     icon: 'heart',
     questions: [
       {
-        id: 'blood_tests',
+        id: 'has_tests_or_ultrasound',
         type: 'radio',
-        label: { ru: 'Есть ли анализы крови за последние 2–3 месяца', en: 'Do you have blood test results from the last 2–3 months' },
+        label: { ru: 'Есть ли анализы крови за последние 2–3 месяца или делали ли УЗИ', en: 'Do you have blood test results from the last 2–3 months or did you have ultrasound' },
         icon: 'heart',
         options: yesNoOptionsSimple,
         required: true,
-        hasAdditional: true,
-      },
-      {
-        id: 'ultrasound',
-        type: 'radio',
-        label: { ru: 'Делали ли УЗИ', en: 'Did you have ultrasound' },
-        icon: 'activity',
-        options: yesNoOptionsSimple,
-        required: true,
-        hasAdditional: true,
+        hasAdditional: false,
       },
       {
         id: 'attach_files',
@@ -1722,7 +1713,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'digestion_problems',
         type: 'checkbox',
-        label: { ru: 'Пищеварение', en: 'Digestion' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'heart',
         options: digestionNewOptions,
         required: true,
@@ -1830,7 +1821,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'chronic_autoimmune',
         type: 'checkbox',
-        label: { ru: 'Хронические и аутоиммунные заболевания', en: 'Chronic and autoimmune diseases' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'alert-circle',
         options: chronicDiseasesOptions,
         required: true,
@@ -1847,7 +1838,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'nervous_system_problems',
         type: 'checkbox',
-        label: { ru: 'Нервная система', en: 'Nervous system' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'brain',
         options: nervousSystemOptions,
         required: true,
@@ -1864,7 +1855,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'circulation_problems',
         type: 'checkbox',
-        label: { ru: 'Кровообращение', en: 'Circulation' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'heart',
         options: circulationOptions,
         required: true,
@@ -1881,7 +1872,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'vessels_skin_problems',
         type: 'checkbox',
-        label: { ru: 'Сосуды и кожа', en: 'Vessels and skin' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'heart',
         options: vesselsSkinOptions,
         required: true,
@@ -1898,7 +1889,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'joints_spine_problems',
         type: 'checkbox',
-        label: { ru: 'Суставы и позвоночник', en: 'Joints and spine' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'bone',
         options: jointsSpineOptions,
         required: true,
@@ -1924,7 +1915,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'formations_present',
         type: 'checkbox',
-        label: { ru: 'Образования', en: 'Formations' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'circle',
         options: formationsOptions,
         required: true,
@@ -1941,7 +1932,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'infections_discharge_problems',
         type: 'checkbox',
-        label: { ru: 'Инфекции и выделения', en: 'Infections and discharge' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'alert-circle',
         options: infectionsDischargeOptions.filter(opt => opt.value !== 'discharge_female'),
         required: true,
@@ -1975,7 +1966,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'skin_problems',
         type: 'checkbox',
-        label: { ru: 'Кожа', en: 'Skin' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'sparkles',
         options: skinNewOptions,
         required: true,
@@ -1992,7 +1983,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'allergies_present',
         type: 'checkbox',
-        label: { ru: 'Аллергии', en: 'Allergies' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'flower',
         options: allergiesNewOptions,
         required: true,
@@ -2035,7 +2026,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'sleep_problems',
         type: 'checkbox',
-        label: { ru: 'Сон', en: 'Sleep' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'moon',
         options: sleepNewOptions,
         required: true,
@@ -2052,7 +2043,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'energy_problems',
         type: 'checkbox',
-        label: { ru: 'Энергия', en: 'Energy' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'zap',
         options: energyNewOptions,
         required: true,
@@ -2069,7 +2060,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'memory_concentration_problems',
         type: 'checkbox',
-        label: { ru: 'Память и концентрация', en: 'Memory and concentration' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'brain',
         options: memoryConcentrationOptions,
         required: true,
@@ -2086,7 +2077,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'lifestyle_type',
         type: 'checkbox',
-        label: { ru: 'Образ жизни', en: 'Lifestyle' },
+        label: { ru: 'Отметьте подходящее', en: 'Check what applies' },
         icon: 'user',
         options: lifestyleOptions,
         required: true,
@@ -2129,7 +2120,7 @@ export const manQuestionnaire: QuestionnaireSection[] = [
       {
         id: 'supplements_usage',
         type: 'radio',
-        label: { ru: 'БАДы', en: 'Supplements' },
+        label: { ru: 'Как принимаете?', en: 'How do you take them?' },
         icon: 'pill',
         options: supplementsOptions,
         required: true,
@@ -2144,22 +2135,13 @@ export const manQuestionnaire: QuestionnaireSection[] = [
     icon: 'heart',
     questions: [
       {
-        id: 'blood_tests',
+        id: 'has_tests_or_ultrasound',
         type: 'radio',
-        label: { ru: 'Есть ли анализы крови за последние 2–3 месяца', en: 'Do you have blood test results from the last 2–3 months' },
+        label: { ru: 'Есть ли анализы крови за последние 2–3 месяца или делали ли УЗИ', en: 'Do you have blood test results from the last 2–3 months or did you have ultrasound' },
         icon: 'heart',
         options: yesNoOptionsSimple,
         required: true,
-        hasAdditional: true,
-      },
-      {
-        id: 'ultrasound',
-        type: 'radio',
-        label: { ru: 'Делали ли УЗИ', en: 'Did you have ultrasound' },
-        icon: 'activity',
-        options: yesNoOptionsSimple,
-        required: true,
-        hasAdditional: true,
+        hasAdditional: false,
       },
       {
         id: 'attach_files',

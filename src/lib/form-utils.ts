@@ -390,10 +390,14 @@ export const generateMarkdown = (
     html += `<b>${escapeHtml(section.title[lang])}</b>\n`;
 
     section.questions.forEach((question) => {
+      // В блок «Анализы и обследования»: файлы выводим только если выбран «Да»
+      if (question.id === 'attach_files' && formData['has_tests_or_ultrasound'] !== 'yes') {
+        return;
+      }
       const value = formData[question.id];
       const additional = additionalData[`${question.id}_additional`];
 
-      if (value && (Array.isArray(value) ? value.length > 0 : value.trim() !== '')) {
+      if (value && (Array.isArray(value) ? value.length > 0 : (typeof value === 'string' && value.trim() !== ''))) {
         const label = question.label[lang];
         
         // Question number - start numbering from "digestion" or "digestion_problems" question
@@ -420,15 +424,25 @@ export const generateMarkdown = (
           answerText = String(value);
         }
 
-        // Question on one line, answer on next line
-        if (digestionQuestionPassed) {
-          html += `${questionNumber}. <b>${escapeHtml(label)}</b>\n`;
-          questionNumber++;
+        // Не дублируем заголовок секции: если подпись вопроса совпадает с названием секции — выводим только ответ
+        const sectionTitle = (section.title[lang] || '').replace(/\s+/g, ' ').trim();
+        const questionLabel = (label || '').replace(/\s+/g, ' ').trim();
+        const labelSameAsSection = questionLabel === sectionTitle;
+        if (labelSameAsSection) {
+          if (digestionQuestionPassed) {
+            html += `${questionNumber}. `;
+            questionNumber++;
+          }
+          html += `${escapeHtml(answerText)}`;
         } else {
-          html += `<b>${escapeHtml(label)}</b>\n`;
+          if (digestionQuestionPassed) {
+            html += `${questionNumber}. <b>${escapeHtml(label)}</b>\n`;
+            questionNumber++;
+          } else {
+            html += `<b>${escapeHtml(label)}</b>\n`;
+          }
+          html += `${escapeHtml(answerText)}`;
         }
-        
-        html += `${escapeHtml(answerText)}`;
         
         // Additional info on same line if present
         if (additional && additional.trim() !== '') {
@@ -469,10 +483,31 @@ export const generateMarkdown = (
     });
   }
 
-  return html;
+  // Убираем подряд идущие одинаковые строки: сравниваем по тексту без HTML и без ведущего «1. »
+  const normalizeForCompare = (s: string) =>
+    s.replace(/<[^>]*>/g, '').replace(/^\s*\d+\.\s*/, '').trim();
+  const lines = html.split('\n');
+  const deduped: string[] = [];
+  let prevNormalized = '';
+  for (const line of lines) {
+    const normalized = normalizeForCompare(line);
+    if (normalized !== prevNormalized) {
+      deduped.push(line);
+      prevNormalized = normalized;
+    }
+  }
+  return deduped.join('\n');
 };
 
-// Send file to Telegram
+// Check if file is an image (for Telegram: send as photo so it's viewable inline)
+const isImageFile = (file: File): boolean => {
+  const type = (file.type || '').toLowerCase();
+  if (type.startsWith('image/')) return true;
+  const ext = (file.name.split('.').pop() || '').toLowerCase();
+  return ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'].includes(ext);
+};
+
+// Send file to Telegram (images via sendPhoto for inline viewing, rest via sendDocument)
 const sendFileToTelegram = async (
   botToken: string,
   chatId: string,
@@ -482,18 +517,24 @@ const sendFileToTelegram = async (
   try {
     const formData = new FormData();
     formData.append('chat_id', chatId);
-    formData.append('document', file, file.name);
+    const isImage = isImageFile(file);
+    if (isImage) {
+      formData.append('photo', file, file.name);
+    } else {
+      formData.append('document', file, file.name);
+    }
     if (caption) {
       formData.append('caption', caption);
     }
 
-    const response = await fetch(
-      `https://api.telegram.org/bot${botToken}/sendDocument`,
-      {
-        method: 'POST',
-        body: formData,
-      }
-    );
+    const endpoint = isImage
+      ? `https://api.telegram.org/bot${botToken}/sendPhoto`
+      : `https://api.telegram.org/bot${botToken}/sendDocument`;
+
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      body: formData,
+    });
 
     const responseData = await response.json();
 

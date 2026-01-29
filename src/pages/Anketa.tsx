@@ -203,6 +203,19 @@ const Anketa: React.FC = () => {
         });
       }
     }
+    // If has_tests_or_ultrasound changed to "no", clear attach_files (files and formData)
+    if (questionId === 'has_tests_or_ultrasound' && value === 'no') {
+      setUploadedFiles((prev) => {
+        const next = { ...prev };
+        delete next['attach_files'];
+        return next;
+      });
+      setFormData((prev) => {
+        const next = { ...prev };
+        delete next['attach_files'];
+        return next;
+      });
+    }
     // If how_learned changed and "recommendation" is not selected, clear additional field and error
     if (questionId === 'how_learned') {
       if (value !== 'recommendation') {
@@ -352,28 +365,34 @@ const Anketa: React.FC = () => {
               </h2>
 
               <div className="space-y-6">
-                {section.questions.map((question) => (
-                  <div
-                    key={question.id}
-                    data-error={!!errors[question.id]}
-                  >
-                    <QuestionField
-                      question={question}
-                      value={
-                        question.type === 'file'
-                          ? (uploadedFiles[question.id] || [])
-                          : formData[question.id] || (question.type === 'checkbox' ? [] : '')
-                      }
-                      additionalValue={additionalData[`${question.id}_additional`] || ''}
-                      error={errors[question.id]}
-                      additionalError={errors[`${question.id}_additional`]}
-                      onChange={(value) => handleFieldChange(question.id, value)}
-                      onAdditionalChange={(value) =>
-                        handleAdditionalChange(question.id, value)
-                      }
-                    />
-                  </div>
-                ))}
+                {section.questions.map((question) => {
+                  // Поле загрузки файлов показываем только если выбран «Да» на вопрос про анализы/УЗИ
+                  if (question.id === 'attach_files' && formData['has_tests_or_ultrasound'] !== 'yes') {
+                    return null;
+                  }
+                  return (
+                    <div
+                      key={question.id}
+                      data-error={!!errors[question.id]}
+                    >
+                      <QuestionField
+                        question={question}
+                        value={
+                          question.type === 'file'
+                            ? (uploadedFiles[question.id] || [])
+                            : formData[question.id] || (question.type === 'checkbox' ? [] : '')
+                        }
+                        additionalValue={additionalData[`${question.id}_additional`] || ''}
+                        error={errors[question.id]}
+                        additionalError={errors[`${question.id}_additional`]}
+                        onChange={(value) => handleFieldChange(question.id, value)}
+                        onAdditionalChange={(value) =>
+                          handleAdditionalChange(question.id, value)
+                        }
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
           ))}
